@@ -80,7 +80,15 @@
                   letter-spacing: 0.16em; box-shadow: 0 -6px 24px rgba(221,181,112,0.35); }
           :host(.player-hidden) .pill { display: inline-flex; }
           .pill svg { display: block; }
-          @media (max-width: 760px) { .toggleVideo { display: none; } .title { max-width: 34vw; } .bar { gap: 12px; padding: 0 16px; } }
+          @media (max-width: 760px) {
+            .toggleVideo { display: none; }
+            .brand-logo { display: none; }
+            .track-label { display: none; }
+            .bar { gap: 10px; padding: 0 14px; }
+            .btn { width: 38px; height: 38px; }
+            .btn.play { width: 46px; height: 46px; }
+            .title { font-size: 12px; }
+          }
         </style>
         <button class="pill" id="show" aria-label="Mostrar player"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15l13-7.5z"/></svg>PLAYER</button>
         <div class="wrap" id="wrap">
