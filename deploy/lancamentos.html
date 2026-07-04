@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lançamentos — Vermont</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Mystery+Quest&family=Unbounded:wght@300;400;500&family=Archivo:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #0C0E10; }
+    ::selection { background: #C9A05C; color: #0F1113; }
+    @keyframes vmt-logo { 0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 0 rgba(221,181,112,0)); } 50% { transform: translateY(-2px) scale(1.05); filter: drop-shadow(0 0 10px rgba(221,181,112,0.75)); } }
+    @keyframes vmt-fanglow { 0%, 100% { box-shadow: 0 0 8px rgba(201,160,92,0.35); } 50% { box-shadow: 0 0 22px rgba(221,181,112,0.8); } }
+  </style>
+  <script src="assets/vermont-player.js"></script>
+</helmet>
+
+<div style="min-height:100vh;background:#0C0E10;color:#ECEDEB;font-family:'Archivo',sans-serif;font-weight:300;overflow-x:hidden;display:flex;flex-direction:column">
+
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;row-gap:8px;padding:14px 24px;background:linear-gradient(180deg, rgba(12,14,16,0.94), rgba(12,14,16,0));backdrop-filter:blur(8px)">
+    <a href="index.html" style="display:flex;align-items:center"><img src="assets/logo-white.png" alt="Vermont" style="height:38px;display:block;animation:vmt-logo 3.2s ease-in-out infinite"></a>
+    <div style="display:flex;align-items:center;gap:26px;flex-wrap:wrap;justify-content:flex-end;row-gap:8px">
+      <a href="index.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570">Home</a>
+      <a href="agenda.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570">Agenda</a>
+      <a href="sets.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570">Sets</a>
+      <a href="lancamentos.html" style="color:#ECEDEB;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:400;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;border-bottom:1px solid #C9A05C;padding-bottom:3px"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Lançamentos</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Releases</sc-if></a>
+      <a href="shop.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570">Shop</a>
+      <a href="booking.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Contratação</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Booking</sc-if></a>
+      <a href="fanclube.html" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg, #DDB570, #C9A05C);color:#0F1113;text-decoration:none;font-weight:600;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border-radius:999px;animation:vmt-fanglow 2.6s ease-in-out infinite;transition:transform 0.25s ease" style-hover="transform:translateY(-2px) scale(1.03)">✦&nbsp;Fan&nbsp;Clube</a>
+      <div style="display:flex;align-items:center;gap:2px;border:1px solid rgba(236,237,235,0.18);border-radius:999px;padding:3px">
+        <button onClick="{{ setPt }}" style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;border:none;cursor:pointer;border-radius:999px;padding:5px 12px;background:{{ ptBg }};color:{{ ptColor }}"><img src="assets/flag-br.png" alt="" style="width:18px;height:13px;border-radius:2px;display:block">PT</button>
+        <button onClick="{{ setEn }}" style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;border:none;cursor:pointer;border-radius:999px;padding:5px 12px;background:{{ enBg }};color:{{ enColor }}"><img src="assets/flag-us.png" alt="" style="width:18px;height:13px;border-radius:2px;display:block">EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <main style="flex:1;max-width:1240px;width:100%;margin:0 auto;padding:160px 64px 120px;box-sizing:border-box;display:flex;flex-direction:column;gap:64px">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.32em;color:#C9A05C">✦&nbsp;DISCOGRAFIA</span>
+      <h1 style="margin:0;font-family:'Unbounded',sans-serif;font-weight:400;font-size:44px">
+        <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Lançamentos</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Releases</sc-if>
+      </h1>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#5c6266">{{ total }} releases · 2013 — 2026 · <a href="https://www.beatport.com/artist/vermont-br/314825/releases" target="_blank" style="color:#C9A05C;text-decoration:none" style-hover="color:#DDB570">Beatport →</a></span>
+    </div>
+
+    <sc-for list="{{ anos }}" as="ano" hint-placeholder-count="3">
+      <section style="display:flex;flex-direction:column;gap:28px">
+        <div style="display:flex;align-items:baseline;gap:20px">
+          <h2 style="margin:0;font-family:'Unbounded',sans-serif;font-weight:300;font-size:30px;color:#C9A05C">{{ ano.ano }}</h2>
+          <div style="flex:1;height:1px;background:rgba(236,237,235,0.1)"></div>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5c6266">{{ ano.qtd }}</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(4, minmax(0,1fr));gap:20px">
+          <sc-for list="{{ ano.items }}" as="r" hint-placeholder-count="4">
+            <a href="{{ r.u }}" target="_blank" style="display:flex;flex-direction:column;gap:0;border:1px solid rgba(236,237,235,0.1);border-radius:2px;overflow:hidden;background:#101317;text-decoration:none;transition:border-color 0.3s ease, transform 0.3s ease" style-hover="border-color:rgba(201,160,92,0.55);transform:translateY(-4px)">
+              <div style="aspect-ratio:1/1;overflow:hidden;background:#14171a">
+                <img src="{{ r.img }}" alt="{{ r.t }}" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.5s ease" style-hover="transform:scale(1.06)">
+              </div>
+              <div style="display:flex;flex-direction:column;gap:6px;padding:16px 16px 18px">
+                <span style="font-size:15px;font-weight:500;color:#ECEDEB;line-height:1.35">{{ r.t }}</span>
+                <span style="font-size:12.5px;color:#9BA1A3;line-height:1.4">{{ r.a }}</span>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5c6266;margin-top:4px">{{ r.l }} · {{ r.b }} BPM</span>
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#C9A05C">{{ r.dd }}</span>
+              </div>
+            </a>
+          </sc-for>
+        </div>
+      </section>
+    </sc-for>
+  </main>
+
+  <footer style="border-top:1px solid rgba(236,237,235,0.08);background:#0A0C0E">
+    <div style="max-width:1240px;margin:0 auto;padding:56px 40px 28px;display:flex;flex-direction:column;gap:36px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <a href="index.html" style="display:inline-flex;width:fit-content"><img src="assets/logo-white.png" alt="Vermont" style="height:38px;display:block;filter:drop-shadow(0 0 10px rgba(221,181,112,0.3))"></a>
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.22em;color:#5c6266">Created by :</span><img src="assets/emusic-icon.png" alt="" style="height:24px;display:block"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.18em;color:#E9EDF7">E-MUSIC<span style="color:#3B82F6">.AI</span></span></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <a href="#" aria-label="Instagram" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"></circle></svg></a>
+          <a href="https://soundcloud.com/vermontlive" target="_blank" aria-label="SoundCloud" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2.5 15.5v2.4M5 14v4M7.5 13v5M10 12.2v5.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none"></path><path d="M12.2 18h5.9a3.4 3.4 0 0 0 .6-6.76A5.1 5.1 0 0 0 13.7 7c-.53 0-1.03.08-1.5.23V18z"></path></svg></a>
+          <a href="#" aria-label="Spotify" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M7.5 9.6c3.2-.9 6.6-.5 9.2 1"></path><path d="M8 12.6c2.6-.7 5.3-.4 7.5.9"></path><path d="M8.5 15.4c2-.5 4-.2 5.7.8"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCIIcqA9U0cRfaCE7CWY99jQ" target="_blank" aria-label="YouTube" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"></rect><path d="M10 9.3v5.4l4.8-2.7L10 9.3z" fill="currentColor" stroke="none"></path></svg></a>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(236,237,235,0.07);padding-top:22px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5c6266">© {{ ano }} — <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Todos os direitos reservados</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">All rights reserved</sc-if></span>
+        <a href="booking.html" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.14em;color:#C9A05C;text-decoration:none" style-hover="color:#DDB570"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">CONTRATAÇÃO →</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">BOOKING →</sc-if></a>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;idiomaInicial&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;pt&quot;, &quot;en&quot;], &quot;default&quot;: &quot;pt&quot;, &quot;tsType&quot;: &quot;'pt' | 'en'&quot;}}">
+class Component extends DCLogic {
+  state = { lang: null };
+
+  get lang() {
+    return this.state.lang ?? this.props.idiomaInicial ?? 'pt';
+  }
+
+  static DATA = [
+    ['Mulan','Dusty, Vermont, Rayzo','Minus32 Gold','68','2026-07-03','f82ffe4b-6891-4cdf-8dbd-8a519e7a32bc','mulan/7131786'],
+    ['Psy-Trance Odyssey, Vol. 19','VA','LW Recordings','72–158','2026-06-12','55dafa43-94dd-4e5e-83d1-856dc93771e4','psy-trance-odyssey-vol-19/7025239'],
+    ['MOYA','Voyage, Major7, Vermont','X7M Records','124','2026-03-06','db61e425-b495-4bae-a508-4532bddcda59','moya/5962384'],
+    ['Peace, Love, Unity, Respect','Phanatic','IMMERSIVE','142','2026-02-20','0e541437-b9f1-431d-8f3b-276493b64210','peace-love-unity-respect/5806440'],
+    ['Pa Ca','Berg, Vermont, Rayzo','Wavelab Records','141','2026-02-06','187f319c-6d58-4a11-a768-3327eff6ec61','pa-ca/5754710'],
+    ['Dance (Mitsunari BR & Skore Remix)','Vermont','Minus32 Gold','122','2026-01-23','33500303-106a-48a5-a75f-cbd6bc6f13af','dance-mitsunari-br-skore-br-remix/5768110'],
+    ['Elipsy (Vermont & Harmonika Remix)','Vegas (Brazil)','SYNK87','141','2025-11-12','dcb3d760-4d0c-49d3-bd18-55064354f459','elipsy-vermont-harmonika-remix/5549665'],
+    ['Enjoy The Silence','Berg, Vermont','DistroKid','140','2025-10-31','02f061e5-46bf-4587-a213-a49cba8ca8a4','enjoy-the-silence/5497318'],
+    ['Rise','Wrecked Machines, Vermont','Minus32 Gold','145','2025-10-24','a3a00b80-d83b-4240-b755-0cd566c04fa4','rise/5413533'],
+    ['Move','Major7, Vermont','Minus32 Gold','72','2025-08-29','eea55b95-93c2-4bfb-842a-d697ebe3deb8','move/5305871'],
+    ['Casa Blanca (Vermont & Becker Remix)','Major7, Reality Test','X7M Records','72','2025-06-27','8af4840a-38e2-4712-9048-8ed5ab82c569','casa-blanca-vermont-br-becker-remix/5138844'],
+    ['Maneliza','Vermont, Heavy Drop','Minus32 Gold','141','2025-05-30','bc7dc8dd-af31-49f4-b8f2-7bd34e1fb7d1','maneliza/5068858'],
+    ['Dance (Black Hertz Remix)','Vermont, Black Hertz','Minus32','125','2025-05-20','5e67bfb5-67c6-4886-bbd4-46d00023be9a','dance-black-hertz-remix/5061202'],
+    ['Angels Opera','Vermont, BackHaze','Minus32 Gold','77','2025-04-11','d6015e51-9733-4b98-a479-b3fbe237776f','angels-opera/4995913'],
+    ['Poseidon','Pandora, Vermont','Minus32 Gold','131','2025-01-24','f3c2e20f-84c1-4fb9-a5d3-c0f565409c57','poseidon/4864872'],
+    ['Bhajare (Becker & Vermont Remix)','Pandora','Ubuntu Psy Records','72','2024-12-06','19e2b59b-6355-499a-b7d5-48247f053cb9','bhajare-becker-vermont-br-remix/4813615'],
+    ['Jahbulam','Vegas (Brazil), Vermont','SYNK87','96','2024-11-22','e225239b-f87f-42bc-b346-a91f3c59fec5','jahbulam/4800010'],
+    ['Dance (Salvian Remix)','Vermont, Salvyan','Minus32','160','2024-11-08','000d4722-63d3-42ee-9b28-32c1b459bca7','dance-salvian-remix/4809421'],
+    ['Eternity (Phantom BR Remix)','Vermont, Pondora','Minus32 Gold','72','2024-09-06','eb5c81bb-552a-4821-a1a9-6f508bddbec6','eternity-phantom-br-remix/4723432'],
+    ['Dance','Vermont','Minus32','72','2024-05-10','9acb3409-799b-4120-8ad4-8c4adb7ac688','dance/4555548'],
+    ['Oceano','Vermont, Doktor Froid, Pitchbend','Avant Garde Music','70–108','2023-11-28','e746410c-b42c-48be-83f8-cee6cebb4f54','oceano/4348174'],
+    ['Temple Deep','Vermont','Avant Garde Music','93','2023-10-20','1505c542-b428-4057-b7c4-227a8ccd48a5','temple-deep/4309969'],
+    ['The Kraken','Vermont','Avant Garde Music','108','2023-08-25','30cfadc5-f163-4059-b614-1b25dff60230','the-kraken/4240540'],
+    ['Obstáculos','Vermont','Avant Garde Music','79','2023-07-14','fac2b3c1-fe82-4567-9679-5cc9b4f54e36','obstaculos/4183971'],
+    ['Revival (Raz Remix)','Vermont, Pondora','Minus32','73','2023-04-19','aab23f76-d38d-4122-8b41-1de683b1300e','revival-raz-remix/4078738'],
+    ['To Telos','Bandi, Vermont, Lenjix, Sosna','Bandora Records','76–147','2023-03-31','fb3ea813-f409-462c-93e7-a8545de7ecc5','to-telos/4043727'],
+    ['Ultra Balel','Vermont, Babalos','Minus32','155','2023-02-17','d9f2b03d-a75c-47b5-b2e8-9db3476a24c0','ultra-balel/4011403'],
+    ['Entryan','Vermont','Minus32','107','2022-10-05','dd5f3506-e20a-4ae1-9456-0b8ddebbd33a','entryan/3886232'],
+    ['Canibal','Vermont','Minus32','103','2022-04-05','6dc09cf9-634d-47fc-819b-24403a3f7ffb','canibal/3699365'],
+    ['Verdök','Vermont, Doktor Froid','Minus32','145','2021-12-08','a38f44cf-b795-427d-8178-7a378875fe29','verdok/3577188'],
+    ['Golden Flower','Vermont','Minus32','87','2021-11-03','fe2177fe-19b0-4da9-a7ba-e2de541de23a','golden-flower/3557608'],
+    ['Galática','Vermont, PIRAMD','Minus32','151','2021-06-30','232d28cb-79dc-4e03-8953-774bc2120897','galatica/3420431'],
+    ['Stars Remixes (Extended Versions)','Vermont, 8th Sin','Minus32','112–155','2020-12-09','151c8e85-0ef7-454d-8cdf-0b205c9cb2c7','stars-remixes-extended-versions/3207751'],
+    ['Esperanza (feat. Debora Moretti)','Vermont, Acquavitta, Debora Moretti','Minus32','175','2020-11-04','246c21ee-375f-462a-90a6-3026a57010c7','esperanza-feat-debora-moretti/3171063'],
+    ['Heroes','Vermont','Minus32','150','2020-06-09','b83dee14-ae07-46d8-8114-5748bab782c9','heroes/2988874'],
+    ['Mercury','Vermont','Minus32','143','2020-04-21','e4f2c17d-3695-46a8-83de-9c3f9b30ff40','mercury/2920855'],
+    ['All the Things We Wished (Vermont & 8THSIN Remix)','Mandragora, Vermont, 8th Sin','Alien Records','82','2020-02-10','a2a5dd73-79a9-4096-b310-34b58d4dc60b','all-the-things-we-wished-vermont-br-8thsin-remix/2828677'],
+    ['Stars','Vermont, 8th Sin','Minus32','138–155','2019-12-04','2433dc3d-4a88-4684-a221-7d3cb8ae92bc','stars/2778219'],
+    ['Synechku','Vermont, Pondora','SoundCloud Direct','142','2019-06-23','956e7727-8b95-49be-97a4-bb1da281a3c1','synechku/2634171'],
+    ['Revival (Doktor Froid & Thrive Remix)','Thrive, Vermont, Doktor Froid, Pondora','Alien Records','107','2019-04-29','fe65cc5f-949a-45c4-bdb6-a85e94558832','revival-doktor-froid-thrive-remix/2570217'],
+    ['Experiments','Doktor Froid, Aura Vortex, Electric Gene, Vermont','Alien Records','86–140','2016-10-21','6ae6fd32-3171-4574-ba1c-29efce848e20','experiments/1870452'],
+    ['Revival','Vermont, Pondora','Alien Records','107','2016-07-29','17408319-7229-4d4d-b2f8-4e5720ca4b93','revival/1811785'],
+    ['Sense of Reality Remixes','Vermont, Basscannon','Alien Records','69–137','2016-05-09','df64c77c-1d32-446c-bab6-abece8024879','sense-of-reality-remixes/1761560'],
+    ['Era','Vermont, Von Zeus','Alien Records','130','2016-05-05','76f667ed-9353-4141-a5e0-046ec968e5b1','era/1758245'],
+    ['Habits of Mind','Vermont','Alien Records','102–137','2015-10-29','4b9e4a3b-6ea3-4bcc-96be-de7728c88dab','habits-of-mind/1625198'],
+    ['BrasiAliens, Vol. 1','VA','X7M Records','70–140','2015-06-15','d93c3588-0110-42c8-a619-76989092cf65','brasialiens-vol-1/1533055'],
+    ['Sense Of Reality','Vermont, Basscannon, Groundbass','Alien Records','69–137','2015-03-23','7285ffab-5e56-4ecb-924f-8de403e8a868','sense-of-reality/1499700'],
+    ['Psychedelic Experience','VA','Alien Records','114–139','2014-11-25','79e4e44d-f3a8-4040-9148-a582ee4dce4e','psychedelic-experience/1418751'],
+    ['Race of God','Vermont, Groundbass, Hazek, Skinner','Phantasm Records','90–138','2014-02-24','9257db50-6fbf-4ead-a066-fe2f26e957a4','race-of-god/1246702'],
+    ['Cosmic Riders','VA','Phantasm Records','68–150','2013-04-08','dcb3f640-150b-468e-be52-0342fefbdef1','cosmic-riders/1066179'],
+    ['New World, Vol. 1','VA','Phantasm Records','87–145','2013-02-18','f230cc80-f49f-414e-8fa6-922b72065c18','new-world-vol-1/1038060']
+  ];
+
+  renderVals() {
+    const pt = this.lang === 'pt';
+    const en = !pt;
+    const on = { bg: '#ECEDEB', color: '#0F1113' };
+    const off = { bg: 'transparent', color: '#9BA1A3' };
+    const mesesPt = ['JAN','FEV','MAR','ABR','MAI','JUN','JUL','AGO','SET','OUT','NOV','DEZ'];
+    const mesesEn = ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+    const meses = pt ? mesesPt : mesesEn;
+    const va = pt ? 'Vários artistas' : 'Various artists';
+
+    const items = Component.DATA.map(([t, a, l, b, d, img, u]) => {
+      const [y, m, day] = d.split('-');
+      return {
+        t,
+        a: a === 'VA' ? va : a,
+        l, b,
+        ano: y,
+        dd: day + ' ' + meses[parseInt(m, 10) - 1] + ' ' + y,
+        img: 'https://geo-media.beatport.com/image_size/500x500/' + img + '.jpg',
+        u: 'https://www.beatport.com/release/' + u
+      };
+    });
+
+    const porAno = {};
+    items.forEach((it) => { (porAno[it.ano] = porAno[it.ano] || []).push(it); });
+    const anos = Object.keys(porAno).sort((a, b) => b - a).map((y) => ({
+      ano: y,
+      qtd: porAno[y].length + (pt ? (porAno[y].length === 1 ? ' lançamento' : ' lançamentos') : (porAno[y].length === 1 ? ' release' : ' releases')),
+      items: porAno[y]
+    }));
+
+    return {
+      pt, en,
+      setPt: () => this.setState({ lang: 'pt' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      ptBg: pt ? on.bg : off.bg, ptColor: pt ? on.color : off.color,
+      enBg: en ? on.bg : off.bg, enColor: en ? on.color : off.color,
+      anoAtual: new Date().getFullYear(),
+      total: items.length,
+      anos
+    };
+  }
+}
+</script>
+</body>
+</html>

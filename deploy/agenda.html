@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Agenda — Vermont</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Mystery+Quest&family=Unbounded:wght@300;400;500&family=Archivo:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #0C0E10; }
+    ::selection { background: #C9A05C; color: #0F1113; }
+    @keyframes vmt-logo { 0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 0 rgba(221,181,112,0)); } 50% { transform: translateY(-2px) scale(1.05); filter: drop-shadow(0 0 10px rgba(221,181,112,0.75)); } }
+    @keyframes vmt-fanglow { 0%, 100% { box-shadow: 0 0 8px rgba(201,160,92,0.35); } 50% { box-shadow: 0 0 22px rgba(221,181,112,0.8); } }
+  </style>
+  <script src="assets/vermont-player.js"></script>
+</helmet>
+
+<div style="min-height:100vh;background:#0C0E10;color:#ECEDEB;font-family:'Archivo',sans-serif;font-weight:300;overflow-x:hidden;display:flex;flex-direction:column">
+
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;row-gap:8px;padding:14px 24px;background:linear-gradient(180deg, rgba(12,14,16,0.94), rgba(12,14,16,0));backdrop-filter:blur(8px)">
+    <a href="index.html" style="display:flex;align-items:center"><img src="assets/logo-white.png" alt="Vermont" style="height:38px;display:block;animation:vmt-logo 3.2s ease-in-out infinite"></a>
+    <div style="display:flex;align-items:center;gap:26px;flex-wrap:wrap;justify-content:flex-end;row-gap:8px">
+      <a href="index.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570">Home</a>
+      <a href="agenda.html" style="color:#ECEDEB;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:400;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;border-bottom:1px solid #C9A05C;padding-bottom:3px">Agenda</a>
+      <a href="sets.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570">Sets</a>
+      <a href="lancamentos.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Lançamentos</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Releases</sc-if></a>
+      <a href="shop.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570">Shop</a>
+      <a href="booking.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Contratação</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Booking</sc-if></a>
+      <a href="fanclube.html" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg, #DDB570, #C9A05C);color:#0F1113;text-decoration:none;font-weight:600;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border-radius:999px;animation:vmt-fanglow 2.6s ease-in-out infinite;transition:transform 0.25s ease" style-hover="transform:translateY(-2px) scale(1.03)">✦&nbsp;Fan&nbsp;Clube</a>
+      <div style="display:flex;align-items:center;gap:2px;border:1px solid rgba(236,237,235,0.18);border-radius:999px;padding:3px">
+        <button onClick="{{ setPt }}" style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;border:none;cursor:pointer;border-radius:999px;padding:5px 12px;background:{{ ptBg }};color:{{ ptColor }}"><img src="assets/flag-br.png" alt="" style="width:18px;height:13px;border-radius:2px;display:block">PT</button>
+        <button onClick="{{ setEn }}" style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;border:none;cursor:pointer;border-radius:999px;padding:5px 12px;background:{{ enBg }};color:{{ enColor }}"><img src="assets/flag-us.png" alt="" style="width:18px;height:13px;border-radius:2px;display:block">EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <main style="flex:1;max-width:1240px;width:100%;margin:0 auto;padding:160px 64px 120px;box-sizing:border-box;display:flex;flex-direction:column;gap:48px">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.32em;color:#C9A05C">✦&nbsp;AGENDA</span>
+      <h1 style="margin:0;font-family:'Unbounded',sans-serif;font-weight:400;font-size:44px">
+        <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Próximas datas</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Upcoming dates</sc-if>
+      </h1>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5c6266">2026</span>
+    </div>
+
+    <div style="display:flex;flex-direction:column">
+      <sc-for list="{{ shows }}" as="show" hint-placeholder-count="5">
+        <div style="display:grid;grid-template-columns:185px 1fr auto;gap:24px;align-items:center;padding:28px 8px;border-top:1px solid rgba(236,237,235,0.08);transition:background 0.3s ease, padding-left 0.3s ease" style-hover="background:rgba(201,160,92,0.05);padding-left:20px">
+          <div style="display:flex;align-items:center;gap:14px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#C9A05C">{{ show.data }}</span>
+            <img src="{{ show.flag }}" alt="{{ show.flagAlt }}" title="{{ show.flagAlt }}" style="width:26px;height:18px;border-radius:3px;display:block;box-shadow:0 2px 6px rgba(0,0,0,0.45)">
+          </div>
+          <div style="display:flex;flex-direction:column;gap:4px">
+            <span style="font-size:18px;font-weight:500;letter-spacing:0.02em">{{ show.evento }}</span>
+            <span style="font-size:14px;color:#9BA1A3">{{ show.local }}</span>
+          </div>
+          <a href="{{ show.link }}" target="_blank" style="display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(201,160,92,0.55);color:#C9A05C;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;padding:11px 22px;border-radius:999px;background:rgba(201,160,92,0.06);transition:background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease" style-hover="background:#C9A05C;color:#0F1113;box-shadow:0 0 18px rgba(221,181,112,0.55);transform:translateY(-2px)">
+            <span style="font-size:14px">✦</span>
+            <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Ingressos</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Tickets</sc-if>
+          </a>
+        </div>
+      </sc-for>
+      <div style="border-top:1px solid rgba(236,237,235,0.08)"></div>
+    </div>
+
+    
+  </main>
+
+  <footer style="border-top:1px solid rgba(236,237,235,0.08);background:#0A0C0E">
+    <div style="max-width:1240px;margin:0 auto;padding:56px 40px 28px;display:flex;flex-direction:column;gap:36px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <a href="index.html" style="display:inline-flex;width:fit-content"><img src="assets/logo-white.png" alt="Vermont" style="height:38px;display:block;filter:drop-shadow(0 0 10px rgba(221,181,112,0.3))"></a>
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.22em;color:#5c6266">Created by :</span><img src="assets/emusic-icon.png" alt="" style="height:24px;display:block"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.18em;color:#E9EDF7">E-MUSIC<span style="color:#3B82F6">.AI</span></span></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <a href="#" aria-label="Instagram" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"></circle></svg></a>
+          <a href="https://soundcloud.com/vermontlive" target="_blank" aria-label="SoundCloud" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2.5 15.5v2.4M5 14v4M7.5 13v5M10 12.2v5.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none"></path><path d="M12.2 18h5.9a3.4 3.4 0 0 0 .6-6.76A5.1 5.1 0 0 0 13.7 7c-.53 0-1.03.08-1.5.23V18z"></path></svg></a>
+          <a href="#" aria-label="Spotify" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M7.5 9.6c3.2-.9 6.6-.5 9.2 1"></path><path d="M8 12.6c2.6-.7 5.3-.4 7.5.9"></path><path d="M8.5 15.4c2-.5 4-.2 5.7.8"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCIIcqA9U0cRfaCE7CWY99jQ" target="_blank" aria-label="YouTube" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"></rect><path d="M10 9.3v5.4l4.8-2.7L10 9.3z" fill="currentColor" stroke="none"></path></svg></a>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(236,237,235,0.07);padding-top:22px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5c6266">© {{ ano }} — <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Todos os direitos reservados</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">All rights reserved</sc-if></span>
+        <a href="booking.html" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.14em;color:#C9A05C;text-decoration:none" style-hover="color:#DDB570"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">CONTRATAÇÃO →</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">BOOKING →</sc-if></a>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;idiomaInicial&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;pt&quot;, &quot;en&quot;], &quot;default&quot;: &quot;pt&quot;, &quot;tsType&quot;: &quot;'pt' | 'en'&quot;}}">
+class Component extends DCLogic {
+  state = { lang: null };
+
+  get lang() {
+    return this.state.lang ?? this.props.idiomaInicial ?? 'pt';
+  }
+
+  static SHOWS = [
+    ['4-7-2026', 'KONTROL', 'Cyclus', 'Rio Grande do Sul - RS'],
+    ['4-7-2026', 'ELETRONIKKA', 'Puma Punku', 'Minas Gerais - MG'],
+    ['11-7-2026', 'KONTROL', 'Sunlight', 'São Paulo - SP'],
+    ['19-7-2026', 'ELETRONIKKA', 'Voov', 'Alemanha 🇩🇪'],
+    ['1-8-2026', 'ELETRONIKKA', 'Ommix', 'México 🇲🇽'],
+    ['8-8-2026', 'KONTROL', 'Espaço Taal', 'São Paulo - SP'],
+    ['15-8-2026', 'KONTROL', 'Psyelements', 'Distrito Federal - DF'],
+    ['15-8-2026', 'KONTROL', 'Intense vs Impossible', 'Pernambuco - PE'],
+    ['22-8-2026', 'ELETRONIKKA', 'Arcadia', 'São Paulo - SP'],
+    ['29-8-2026', 'ALTEZA', 'Indian Spirit', 'Alemanha 🇩🇪'],
+    ['5-9-2026', 'KONTROL', 'Gaia Connection', 'São Paulo - SP'],
+    ['6-9-2026', 'ELETRONIKKA', 'Dream On', 'Minas Gerais - MG']
+  ];
+
+  renderVals() {
+    const pt = this.lang === 'pt';
+    const en = !pt;
+    const on = { bg: '#ECEDEB', color: '#0F1113' };
+    const off = { bg: 'transparent', color: '#9BA1A3' };
+    const meses = pt
+      ? ['JAN','FEV','MAR','ABR','MAI','JUN','JUL','AGO','SET','OUT','NOV','DEZ']
+      : ['JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','SEP','OCT','NOV','DEC'];
+    const intl = pt ? 'Internacional' : 'International';
+    const shows = Component.SHOWS.map(([d, tour, evento, local, link]) => {
+      const [dia, mes, ano] = d.split('-');
+      let flag = 'assets/flag-br-lg.png', flagAlt = 'Brasil';
+      if (local.indexOf('Alemanha') >= 0) { flag = 'assets/flag-de.png'; flagAlt = pt ? 'Alemanha' : 'Germany'; }
+      else if (local.indexOf('México') >= 0) { flag = 'assets/flag-mx.png'; flagAlt = pt ? 'México' : 'Mexico'; }
+      const localLimpo = local.replace(/\s*🇩🇪|\s*🇲🇽/g, '');
+      return {
+        data: dia.padStart(2, '0') + ' ' + meses[parseInt(mes, 10) - 1] + ' ' + ano,
+        evento,
+        flag, flagAlt,
+        local: local === '*' ? intl : (pt ? localLimpo : localLimpo.replace('Alemanha', 'Germany').replace('México', 'Mexico')),
+        link: link || ('https://www.google.com/search?q=' + encodeURIComponent(evento + ' ' + (local === '*' ? '' : local) + ' ingressos 2026'))
+      };
+    });
+    return {
+      pt, en,
+      setPt: () => this.setState({ lang: 'pt' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      ptBg: pt ? on.bg : off.bg, ptColor: pt ? on.color : off.color,
+      enBg: en ? on.bg : off.bg, enColor: en ? on.color : off.color,
+      ano: new Date().getFullYear(),
+      shows
+    };
+  }
+}
+</script>
+</body>
+</html>

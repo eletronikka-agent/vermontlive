@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vermont — DJ / Producer</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Mystery+Quest&family=Unbounded:wght@300;400;500&family=Archivo:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #0C0E10; }
+    ::selection { background: #C9A05C; color: #0F1113; }
+    @keyframes vmt-logo { 0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 0 rgba(221,181,112,0)); } 50% { transform: translateY(-2px) scale(1.05); filter: drop-shadow(0 0 10px rgba(221,181,112,0.75)); } }
+    @keyframes vmt-fanglow { 0%, 100% { box-shadow: 0 0 8px rgba(201,160,92,0.35); } 50% { box-shadow: 0 0 22px rgba(221,181,112,0.8); } }
+    @keyframes vmt-promo-backdrop { from { opacity: 0; } to { opacity: 1; } }
+    @keyframes vmt-promo-card { 0% { opacity: 0; transform: scale(0.7) rotate(-4deg); } 60% { transform: scale(1.04) rotate(1deg); } 100% { opacity: 1; transform: scale(1) rotate(0deg); } }
+    @keyframes vmt-promo-ring { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    @keyframes vmt-promo-shine { 0% { transform: translateX(-160%) skewX(-18deg); } 60%, 100% { transform: translateX(220%) skewX(-18deg); } }
+    @keyframes vmt-promo-star { 0%, 100% { opacity: 0.25; transform: scale(0.7) rotate(0deg); } 50% { opacity: 1; transform: scale(1.25) rotate(25deg); } }
+    @keyframes vmt-promo-pulse { 0%, 100% { text-shadow: 0 0 18px rgba(221,181,112,0.5); } 50% { text-shadow: 0 0 42px rgba(221,181,112,1); } }
+    @keyframes vmt-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes vmt-scrollcue { 0% { transform: scaleY(0); transform-origin: top; } 45% { transform: scaleY(1); transform-origin: top; } 55% { transform: scaleY(1); transform-origin: bottom; } 100% { transform: scaleY(0); transform-origin: bottom; } }
+    @keyframes vmt-pulse { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+  </style>
+  <link rel="preload" as="image" href="assets/logo-white.png">
+  <script src="assets/vermont-player.js"></script>
+</helmet>
+
+<div style="min-height:100vh;background:#0C0E10;color:#ECEDEB;font-family:'Unbounded',sans-serif;font-weight:300;overflow-x:hidden">
+
+  <!-- NAV -->
+  <!-- POPUP 20% OFF -->
+  <sc-if value="{{ promoVisivel }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;inset:0;z-index:100;display:flex;align-items:center;justify-content:center;padding:24px;background:rgba(8,9,11,0.78);backdrop-filter:blur(10px);animation:vmt-promo-backdrop 0.4s ease both">
+      <div style="position:relative;max-width:460px;width:100%;animation:vmt-promo-card 0.65s cubic-bezier(0.34,1.56,0.64,1) 0.1s both">
+        <div style="position:absolute;inset:-2px;border-radius:6px;background:conic-gradient(from 0deg, #C9A05C, #FFE9C4, #7a5c2e, #DDB570, #C9A05C);animation:vmt-promo-ring 6s linear infinite;filter:blur(1px)"></div>
+        <div style="position:relative;border-radius:5px;background:radial-gradient(120% 120% at 50% 0%, #1a1e23 0%, #0C0E10 60%);overflow:hidden;padding:48px 40px 40px;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center">
+          <div style="position:absolute;top:0;left:0;bottom:0;width:45%;background:linear-gradient(90deg, transparent, rgba(255,233,196,0.07), transparent);animation:vmt-promo-shine 3.2s ease-in-out infinite"></div>
+          <span style="position:absolute;top:18px;left:22px;color:#DDB570;font-size:14px;animation:vmt-promo-star 2.6s ease-in-out infinite">✦</span>
+          <span style="position:absolute;top:34px;right:34px;color:#FFE9C4;font-size:11px;animation:vmt-promo-star 3.4s ease-in-out infinite 0.8s">✦</span>
+          <span style="position:absolute;bottom:30px;left:38px;color:#DDB570;font-size:10px;animation:vmt-promo-star 3s ease-in-out infinite 1.5s">✦</span>
+          <button onClick="{{ fecharPromo }}" aria-label="Fechar" style="position:absolute;top:12px;right:12px;width:34px;height:34px;border-radius:999px;border:1px solid rgba(236,237,235,0.2);background:transparent;color:#9BA1A3;font-size:15px;line-height:1;cursor:pointer;transition:color 0.2s ease, border-color 0.2s ease" style-hover="color:#ECEDEB;border-color:#ECEDEB">✕</button>
+          <img src="assets/logo-white.png" alt="Vermont" style="width:150px;height:auto;display:block;filter:drop-shadow(0 0 14px rgba(221,181,112,0.45))">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.4em;color:#C9A05C">✦ OFERTA DE LANÇAMENTO ✦</span>
+          <div style="font-family:'Unbounded',sans-serif;font-weight:500;font-size:64px;line-height:1;color:#FFE9C4;animation:vmt-promo-pulse 2.4s ease-in-out infinite">20%<span style="font-size:26px;letter-spacing:0.1em">&nbsp;OFF</span></div>
+          <p style="margin:0;font-size:15px;line-height:1.65;color:#9BA1A3;max-width:34ch">
+            <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Em todo o merch oficial do Vermont — camisetas, bonés, bandeiras e mais.</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">On all official Vermont merch — tees, caps, flags and more.</sc-if>
+          </p>
+          <a href="shop.html" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg, #DDB570, #C9A05C);color:#0F1113;text-decoration:none;font-weight:600;font-size:14px;letter-spacing:0.14em;text-transform:uppercase;padding:17px 36px;border-radius:2px;box-shadow:0 0 24px rgba(221,181,112,0.35);transition:transform 0.25s ease, box-shadow 0.25s ease" style-hover="transform:translateY(-2px) scale(1.02);box-shadow:0 0 40px rgba(221,181,112,0.6)">
+            <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Aproveitar no Shop</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Shop the deal</sc-if> →
+          </a>
+          <button onClick="{{ fecharPromo }}" style="background:none;border:none;cursor:pointer;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;color:#5c6266;text-transform:uppercase;transition:color 0.2s ease" style-hover="color:#9BA1A3">
+            <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Agora não</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Not now</sc-if>
+          </button>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;row-gap:8px;padding:14px 24px;background:linear-gradient(180deg, rgba(12,14,16,0.94), rgba(12,14,16,0));backdrop-filter:blur(8px)">
+    <a href="#topo" style="display:flex;align-items:center"><img src="assets/logo-white.png" alt="Vermont" style="height:38px;display:block;animation:vmt-logo 3.2s ease-in-out infinite"></a>
+    <div style="display:flex;align-items:center;gap:26px;flex-wrap:wrap;justify-content:flex-end;row-gap:8px">
+      <a href="#topo" style="color:#ECEDEB;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:400;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;border-bottom:1px solid #C9A05C;padding-bottom:3px">Home</a>
+      <a href="#bio" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570">Bio</a>
+      <a href="agenda.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570">Agenda</a>
+      <a href="sets.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570">Sets</a>
+      <a href="lancamentos.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Lançamentos</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Releases</sc-if></a>
+      <a href="shop.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570">Shop</a>
+      <a href="booking.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Contratação</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Booking</sc-if></a>
+      <a href="fanclube.html" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg, #DDB570, #C9A05C);color:#0F1113;text-decoration:none;font-weight:600;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border-radius:999px;animation:vmt-fanglow 2.6s ease-in-out infinite;transition:transform 0.25s ease" style-hover="transform:translateY(-2px) scale(1.03)">✦&nbsp;Fan&nbsp;Clube</a>
+      <div style="display:flex;align-items:center;gap:2px;border:1px solid rgba(236,237,235,0.18);border-radius:999px;padding:3px">
+        <button onClick="{{ setPt }}" style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;border:none;cursor:pointer;border-radius:999px;padding:5px 12px;background:{{ ptBg }};color:{{ ptColor }}"><img src="assets/flag-br.png" alt="" style="width:18px;height:13px;border-radius:2px;display:block">PT</button>
+        <button onClick="{{ setEn }}" style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;border:none;cursor:pointer;border-radius:999px;padding:5px 12px;background:{{ enBg }};color:{{ enColor }}"><img src="assets/flag-us.png" alt="" style="width:18px;height:13px;border-radius:2px;display:block">EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="topo" style="position:relative;height:100vh;min-height:640px;overflow:hidden;display:flex;flex-direction:column">
+    <img src="assets/live-01.jpg" alt="Vermont no mainstage ao pôr do sol" data-mouse="14" style="position:absolute;left:-4%;top:-6%;width:108%;height:112%;object-fit:cover;object-position:center 55%;will-change:transform">
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse 90% 70% at 50% 45%, rgba(12,14,16,0.2) 0%, rgba(12,14,16,0.78) 78%, #0C0E10 100%), linear-gradient(0deg, rgba(12,14,16,0.55) 0%, rgba(12,14,16,0) 35%)"></div>
+    <canvas data-sparkles style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none"></canvas>
+    <div style="position:relative;flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:32px;padding:100px 32px 40px;text-align:center;z-index:2">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.4em;color:#C9A05C;animation:vmt-pulse 4s ease-in-out infinite">DJ&nbsp;/&nbsp;PRODUCER</span>
+      <img src="assets/logo-white.png" alt="Vermont" data-mouse="-26" style="width:min(760px, 86vw);height:auto;display:block;filter:drop-shadow(0 12px 60px rgba(0,0,0,0.6));will-change:transform">
+      <p style="margin:0;max-width:46ch;font-size:18px;line-height:1.65;color:#B9BEC0">
+        <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Onde a batida encontra o cosmos — e a pista vira universo.</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Where the beat meets the cosmos — and the dancefloor becomes a universe.</sc-if>
+      </p>
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;justify-content:center">
+        <a href="fanclube.html" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg, #DDB570, #C9A05C);color:#0F1113;text-decoration:none;font-weight:600;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;padding:16px 30px;border-radius:2px;transition:transform 0.25s ease, filter 0.25s ease" style-hover="filter:brightness(1.08);transform:translateY(-2px)"><span style="font-size:14px">✦</span><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Entrar no Fã-Clube</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Join the Fan Club</sc-if></a>
+        <a href="lancamentos.html" style="display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(236,237,235,0.3);color:#ECEDEB;text-decoration:none;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;padding:15px 30px;border-radius:2px;transition:transform 0.25s ease, border-color 0.25s ease" style-hover="border-color:#C9A05C;transform:translateY(-2px)">
+          <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Últimos lançamentos</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Latest releases</sc-if>
+        </a>
+      </div>
+      <div style="position:absolute;bottom:28px;left:50%;width:1px;height:56px;background:rgba(236,237,235,0.4);animation:vmt-scrollcue 2.2s ease-in-out infinite"></div>
+    </div>
+    <!-- MARQUEE -->
+    <div style="position:relative;z-index:2;border-top:1px solid rgba(236,237,235,0.12);background:rgba(12,14,16,0.65);backdrop-filter:blur(4px);overflow:hidden;padding:14px 0">
+      <div style="display:flex;align-items:center;width:max-content;animation:vmt-marquee 40s linear infinite">
+        <div style="display:flex;align-items:center;gap:64px;padding-right:64px">
+          <img src="assets/logo-white.png" alt="Vermont" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:64px;padding-right:64px">
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+          <img src="assets/logo-white.png" alt="" style="width:67px;height:22px;display:block;opacity:0.75"><span style="color:#C9A05C;font-size:13px">✦</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- BIO -->
+  <section id="bio" style="max-width:1240px;margin:0 auto;padding:130px 64px 100px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:80px;align-items:center">
+    <div data-reveal style="position:relative;padding:0 40px 56px 0">
+      <div style="overflow:hidden;border-radius:2px">
+        <img src="assets/foto-01.jpg" alt="Vermont — Rafael Ferrari" data-parallax="0.06" data-parallax-scale="1.12" style="width:100%;height:auto;display:block;transform:scale(1.12);will-change:transform">
+      </div>
+      <div style="position:absolute;right:0;bottom:0;width:52%;border:6px solid #0C0E10;border-radius:2px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,0.5)">
+        <img src="assets/foto-03.jpg" alt="Vermont retrato" style="width:100%;height:auto;display:block">
+      </div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <span data-reveal style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.32em;color:#C9A05C">✦&nbsp;BIO</span>
+      <h2 data-reveal style="margin:0;font-family:'Unbounded',sans-serif;font-weight:400;font-size:36px;line-height:1.25">Rafael Ferrari<span style="color:#C9A05C">&nbsp;·&nbsp;</span>Vermont</h2>
+      <p data-reveal style="margin:0;font-size:20px;line-height:1.6;color:#ECEDEB;border-left:2px solid #C9A05C;padding-left:20px">
+        <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Um dos nomes mais fortes do psytrance brasileiro — e um verdadeiro <em style="color:#DDB570;font-style:normal">hitmaker</em> do gênero.</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">One of the strongest names in Brazilian psytrance — a true <em style="color:#DDB570;font-style:normal">hitmaker</em> of the genre.</sc-if>
+      </p>
+      <div data-reveal style="display:flex;flex-direction:column;gap:16px;font-size:16.5px;line-height:1.75;color:#9BA1A3">
+        <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">
+          <p style="margin:0">Rafael Ferrari é o produtor e DJ por trás do projeto Vermont. Com estilo criativo e singular, constrói sets que unem groove pesado e melodias hipnóticas — presença constante nos maiores festivais do país. Ao lado de Gabe, também assina o projeto <span style="color:#B9BEC0">Dust Pilots</span>.</p>
+          <p style="margin:0">Em plena expansão internacional, já levou seu som para <span style="color:#B9BEC0">França, Alemanha, Suíça, Itália, México, Argentina, África do Sul e Espanha</span>.</p>
+        </sc-if>
+        <sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">
+          <p style="margin:0">Rafael Ferrari is the producer and DJ behind the Vermont project. With a creative, singular style, he builds sets that fuse heavy grooves with hypnotic melodies — a constant presence at Brazil's biggest festivals. Alongside Gabe, he also runs the <span style="color:#B9BEC0">Dust Pilots</span> project.</p>
+          <p style="margin:0">Expanding internationally, he has taken his sound to <span style="color:#B9BEC0">France, Germany, Switzerland, Italy, Mexico, Argentina, South Africa and Spain</span>.</p>
+        </sc-if>
+      </div>
+      <div data-reveal style="display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:14px;border-top:1px solid rgba(236,237,235,0.08);border-bottom:1px solid rgba(236,237,235,0.08);padding:20px 0">
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-family:'Unbounded',sans-serif;font-weight:400;font-size:26px;color:#DDB570">13+</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:#5c6266"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">ANOS DE ESTRADA</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">YEARS ON THE ROAD</sc-if></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-family:'Unbounded',sans-serif;font-weight:400;font-size:26px;color:#DDB570">50+</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:#5c6266"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">LANÇAMENTOS</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">RELEASES</sc-if></span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <span style="font-family:'Unbounded',sans-serif;font-weight:400;font-size:26px;color:#DDB570">9</span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.14em;color:#5c6266"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">PAÍSES</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">COUNTRIES</sc-if></span>
+        </div>
+      </div>
+      <div data-reveal style="display:flex;flex-direction:column;gap:12px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.24em;color:#5c6266">
+          <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">GRANDES SUCESSOS</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">BIGGEST HITS</sc-if>
+        </span>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <span style="border:1px solid rgba(201,160,92,0.4);color:#C9A05C;font-family:'IBM Plex Mono',monospace;font-size:12px;padding:8px 14px;border-radius:999px">The Engineers</span>
+          <span style="border:1px solid rgba(201,160,92,0.4);color:#C9A05C;font-family:'IBM Plex Mono',monospace;font-size:12px;padding:8px 14px;border-radius:999px">Survey Selva</span>
+          <span style="border:1px solid rgba(201,160,92,0.4);color:#C9A05C;font-family:'IBM Plex Mono',monospace;font-size:12px;padding:8px 14px;border-radius:999px">Witch Hunter</span>
+          <span style="border:1px solid rgba(201,160,92,0.4);color:#C9A05C;font-family:'IBM Plex Mono',monospace;font-size:12px;padding:8px 14px;border-radius:999px">Kazahi</span>
+          <span style="border:1px solid rgba(201,160,92,0.4);color:#C9A05C;font-family:'IBM Plex Mono',monospace;font-size:12px;padding:8px 14px;border-radius:999px">Andromeda</span>
+        </div>
+      </div>
+      <a data-reveal href="lancamentos.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#C9A05C;text-decoration:none;width:fit-content" style-hover="color:#DDB570"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">VER DISCOGRAFIA COMPLETA →</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">FULL DISCOGRAPHY →</sc-if></a>
+    </div>
+  </section>
+
+  <!-- AGENDA -->
+  <sc-if value="{{ agendaVisivel }}" hint-placeholder-val="{{ true }}">
+  <section id="agenda" style="border-top:1px solid rgba(236,237,235,0.08);background:#101317">
+    <div style="max-width:1240px;margin:0 auto;padding:110px 64px;display:flex;flex-direction:column;gap:40px">
+      <div data-reveal style="display:flex;align-items:baseline;justify-content:space-between;gap:24px;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;gap:16px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.32em;color:#C9A05C">✦&nbsp;AGENDA</span>
+          <h2 style="margin:0;font-family:'Unbounded',sans-serif;font-weight:400;font-size:36px">
+            <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Próximas datas</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Upcoming dates</sc-if>
+          </h2>
+        </div>
+        <a href="agenda.html" style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;color:#C9A05C;text-decoration:none" style-hover="color:#DDB570"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">VER AGENDA COMPLETA →</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">FULL SCHEDULE →</sc-if></a>
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <sc-for list="{{ shows }}" as="show" hint-placeholder-count="3">
+          <div data-reveal style="display:grid;grid-template-columns:190px 1fr auto;gap:24px;align-items:center;padding:26px 8px;border-top:1px solid rgba(236,237,235,0.08);transition:background 0.3s ease, padding-left 0.3s ease;cursor:default" style-hover="background:rgba(201,160,92,0.05);padding-left:20px">
+            <div style="display:flex;align-items:center;gap:12px"><span style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#C9A05C">{{ show.data }}</span><div title="{{ show.flagAlt }}" style="width:26px;height:18px;border-radius:3px;box-shadow:0 2px 6px rgba(0,0,0,0.45);background-size:cover;background-position:center;background-image:{{ show.flagBg }}"></div></div>
+            <div style="display:flex;flex-direction:column;gap:4px">
+              <span style="font-size:18px;font-weight:500;letter-spacing:0.02em">{{ show.evento }}</span>
+              <span style="font-size:14px;color:#9BA1A3">{{ show.local }}</span>
+            </div>
+            <a href="agenda.html" style="display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(201,160,92,0.55);color:#C9A05C;text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;padding:11px 22px;border-radius:999px;background:rgba(201,160,92,0.06);transition:background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease" style-hover="background:#C9A05C;color:#0F1113;box-shadow:0 0 18px rgba(221,181,112,0.55);transform:translateY(-2px)">
+              <span style="font-size:14px">✦</span>
+              <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Ingressos</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Tickets</sc-if>
+            </a>
+          </div>
+        </sc-for>
+        <div style="border-top:1px solid rgba(236,237,235,0.08)"></div>
+      </div>
+    </div>
+  </section>
+  </sc-if>
+
+  <!-- GALERIA -->
+  <section id="galeria" style="border-top:1px solid rgba(236,237,235,0.08);background:#101317">
+    <div style="max-width:1240px;margin:0 auto;padding:110px 64px;display:flex;flex-direction:column;gap:40px">
+      <div data-reveal style="display:flex;flex-direction:column;gap:16px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.32em;color:#C9A05C">✦&nbsp;<sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">AO VIVO</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">LIVE</sc-if></span>
+        <h2 style="margin:0;font-family:'Unbounded',sans-serif;font-weight:400;font-size:36px">
+          <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Da pista para o mundo</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">From the floor to the world</sc-if>
+        </h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3, minmax(0,1fr));grid-auto-rows:280px;gap:16px">
+        <div data-reveal style="grid-column:span 2;overflow:hidden;border-radius:2px">
+          <img src="assets/live-03.jpg" alt="Vermont em festival ao ar livre" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease" style-hover="transform:scale(1.05)">
+        </div>
+        <div data-reveal style="grid-row:span 2;overflow:hidden;border-radius:2px">
+          <img src="assets/live-08.jpg" alt="Vermont com fones no palco" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease" style-hover="transform:scale(1.05)">
+        </div>
+        <div data-reveal style="overflow:hidden;border-radius:2px">
+          <img src="assets/live-04.jpg" alt="Vermont em clube" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease" style-hover="transform:scale(1.05)">
+        </div>
+        <div data-reveal style="overflow:hidden;border-radius:2px">
+          <img src="assets/live-05.jpg" alt="Vermont de braços abertos" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;transition:transform 0.6s ease" style-hover="transform:scale(1.05)">
+        </div>
+        <div data-reveal style="grid-column:span 2;overflow:hidden;border-radius:2px">
+          <img src="assets/live-06.jpg" alt="Vermont em clube à noite" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;transition:transform 0.6s ease" style-hover="transform:scale(1.05)">
+        </div>
+        <div data-reveal style="overflow:hidden;border-radius:2px">
+          <img src="assets/live-07.jpg" alt="Vermont sorrindo no palco" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease" style-hover="transform:scale(1.05)">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section id="contato" style="position:relative;overflow:hidden">
+    <img src="assets/live-02.jpg" alt="" data-parallax="0.1" style="position:absolute;left:0;right:0;top:-10%;width:100%;height:120%;object-fit:cover;object-position:center 40%;opacity:0.32;will-change:transform">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg, #0C0E10 0%, rgba(12,14,16,0.55) 50%, #0C0E10 100%)"></div>
+    <div style="position:relative;max-width:1240px;margin:0 auto;padding:150px 64px;display:flex;flex-direction:column;align-items:center;gap:28px;text-align:center">
+      <span data-reveal style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.32em;color:#C9A05C">✦&nbsp;<sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">CONTRATAÇÃO</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">BOOKING</sc-if></span>
+      <h2 data-reveal style="margin:0;font-family:'Unbounded',sans-serif;font-weight:400;font-size:42px;line-height:1.2;max-width:20ch">
+        <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Leve Vermont</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Bring Vermont to your event</sc-if>
+      </h2>
+      <a data-reveal href="booking.html" style="display:inline-flex;align-items:center;gap:10px;background:#C9A05C;color:#0F1113;text-decoration:none;font-weight:500;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;padding:16px 32px;border-radius:2px;transition:transform 0.25s ease, background 0.25s ease" style-hover="background:#DDB570;transform:translateY(-2px)">
+        <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Preencher formulário de contratação</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Fill in the booking form</sc-if>
+      </a>
+
+      <div data-reveal style="display:flex;align-items:center;gap:14px;margin-top:12px;flex-wrap:wrap;justify-content:center">
+        <a href="#" style="display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(236,237,235,0.2);color:#9BA1A3;text-decoration:none;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;padding:11px 20px;border-radius:999px;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 22px rgba(201,160,92,0.35)">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"></circle></svg>
+          Instagram</a>
+        <a href="https://soundcloud.com/vermontlive" target="_blank" style="display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(236,237,235,0.2);color:#9BA1A3;text-decoration:none;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;padding:11px 20px;border-radius:999px;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 22px rgba(201,160,92,0.35)">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M2.5 15.5v2.4M5 14v4M7.5 13v5M10 12.2v5.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none"></path><path d="M12.2 18h5.9a3.4 3.4 0 0 0 .6-6.76A5.1 5.1 0 0 0 13.7 7c-.53 0-1.03.08-1.5.23V18z"></path></svg>
+          SoundCloud</a>
+        <a href="#" style="display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(236,237,235,0.2);color:#9BA1A3;text-decoration:none;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;padding:11px 20px;border-radius:999px;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 22px rgba(201,160,92,0.35)">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M7.5 9.6c3.2-.9 6.6-.5 9.2 1"></path><path d="M8 12.6c2.6-.7 5.3-.4 7.5.9"></path><path d="M8.5 15.4c2-.5 4-.2 5.7.8"></path></svg>
+          Spotify</a>
+        <a href="https://www.youtube.com/channel/UCIIcqA9U0cRfaCE7CWY99jQ" target="_blank" style="display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(236,237,235,0.2);color:#9BA1A3;text-decoration:none;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;padding:11px 20px;border-radius:999px;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 22px rgba(201,160,92,0.35)">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"></rect><path d="M10 9.3v5.4l4.8-2.7L10 9.3z" fill="currentColor" stroke="none"></path></svg>
+          YouTube</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="border-top:1px solid rgba(236,237,235,0.08);background:#0A0C0E">
+    <div style="max-width:1240px;margin:0 auto;padding:56px 40px 28px;display:flex;flex-direction:column;gap:36px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <a href="index.html" style="display:inline-flex;width:fit-content"><img src="assets/logo-white.png" alt="Vermont" style="height:38px;display:block;filter:drop-shadow(0 0 10px rgba(221,181,112,0.3))"></a>
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.22em;color:#5c6266">Created by :</span><img src="assets/emusic-icon.png" alt="" style="height:24px;display:block"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.18em;color:#E9EDF7">E-MUSIC<span style="color:#3B82F6">.AI</span></span></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <a href="#" aria-label="Instagram" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"></circle></svg></a>
+          <a href="https://soundcloud.com/vermontlive" target="_blank" aria-label="SoundCloud" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2.5 15.5v2.4M5 14v4M7.5 13v5M10 12.2v5.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none"></path><path d="M12.2 18h5.9a3.4 3.4 0 0 0 .6-6.76A5.1 5.1 0 0 0 13.7 7c-.53 0-1.03.08-1.5.23V18z"></path></svg></a>
+          <a href="#" aria-label="Spotify" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M7.5 9.6c3.2-.9 6.6-.5 9.2 1"></path><path d="M8 12.6c2.6-.7 5.3-.4 7.5.9"></path><path d="M8.5 15.4c2-.5 4-.2 5.7.8"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCIIcqA9U0cRfaCE7CWY99jQ" target="_blank" aria-label="YouTube" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"></rect><path d="M10 9.3v5.4l4.8-2.7L10 9.3z" fill="currentColor" stroke="none"></path></svg></a>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(236,237,235,0.07);padding-top:22px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5c6266">© {{ ano }} — <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Todos os direitos reservados</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">All rights reserved</sc-if></span>
+        <a href="booking.html" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.14em;color:#C9A05C;text-decoration:none" style-hover="color:#DDB570"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">CONTRATAÇÃO →</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">BOOKING →</sc-if></a>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;idiomaInicial&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;pt&quot;, &quot;en&quot;], &quot;default&quot;: &quot;pt&quot;, &quot;tsType&quot;: &quot;'pt' | 'en'&quot;, &quot;section&quot;: &quot;Conteúdo&quot;}, &quot;mostrarAgenda&quot;: {&quot;editor&quot;: &quot;boolean&quot;, &quot;default&quot;: true, &quot;tsType&quot;: &quot;boolean&quot;, &quot;section&quot;: &quot;Conteúdo&quot;}, &quot;parallaxIntensidade&quot;: {&quot;editor&quot;: &quot;range&quot;, &quot;default&quot;: 1, &quot;min&quot;: 0, &quot;max&quot;: 2, &quot;step&quot;: 0.1, &quot;tsType&quot;: &quot;number&quot;, &quot;section&quot;: &quot;Visual&quot;}}">
+class Component extends DCLogic {
+  state = { lang: null, fanOk: false };
+  fanRef = React.createRef();
+
+  get lang() {
+    return this.state.lang ?? this.props.idiomaInicial ?? 'pt';
+  }
+
+  componentDidMount() {
+    try {
+      if (!sessionStorage.getItem('vmt-promo-20')) {
+        this._promoTimer = setTimeout(() => this.setState({ promo: true }), 900);
+      }
+    } catch (e) {}
+    this._mx = 0; this._my = 0;
+    this._tmx = 0; this._tmy = 0;
+    this._revealed = new WeakSet();
+    this._sparks = null;
+
+    this._lastSpark = 0;
+    this._onMouse = (e) => {
+      this._tmx = (e.clientX / window.innerWidth) - 0.5;
+      this._tmy = (e.clientY / window.innerHeight) - 0.5;
+      const now = performance.now();
+      if (now - this._lastSpark > 90) {
+        this._lastSpark = now;
+        const s = document.createElement('span');
+        s.textContent = '✦';
+        const size = 8 + Math.random() * 10;
+        s.style.cssText = 'position:fixed;left:' + e.clientX + 'px;top:' + e.clientY + 'px;font-size:' + size.toFixed(0) + 'px;color:' + (Math.random() < 0.7 ? '#DDB570' : '#FFE9C4') + ';pointer-events:none;z-index:9999;text-shadow:0 0 8px rgba(221,181,112,0.8);will-change:transform,opacity';
+        document.body.appendChild(s);
+        const dx = (Math.random() - 0.5) * 50;
+        const dy = 18 + Math.random() * 36;
+        const rot = (Math.random() - 0.5) * 240;
+        s.animate([
+          { transform: 'translate(-50%,-50%) rotate(0deg) scale(1)', opacity: 1 },
+          { transform: 'translate(calc(-50% + ' + dx.toFixed(0) + 'px), calc(-50% + ' + dy.toFixed(0) + 'px)) rotate(' + rot.toFixed(0) + 'deg) scale(0.2)', opacity: 0 }
+        ], { duration: 750 + Math.random() * 350, easing: 'cubic-bezier(0.2,0.6,0.4,1)' }).onfinish = () => s.remove();
+      }
+    };
+    window.addEventListener('mousemove', this._onMouse, { passive: true });
+
+    // tilt cards
+    this._tiltHandlers = [];
+    document.querySelectorAll('[data-tilt]').forEach((card) => {
+      const move = (e) => {
+        const r = card.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transform = 'rotateX(' + (-py * 7).toFixed(2) + 'deg) rotateY(' + (px * 9).toFixed(2) + 'deg) translateY(-4px)';
+      };
+      const leave = () => { card.style.transition = 'transform 0.5s ease, border-color 0.3s ease'; card.style.transform = 'none'; setTimeout(() => { card.style.transition = 'border-color 0.3s ease'; }, 500); };
+      card.addEventListener('mousemove', move);
+      card.addEventListener('mouseleave', leave);
+      this._tiltHandlers.push([card, move, leave]);
+    });
+
+    // element caches (refreshed sparsely, not per frame)
+    this._cache = { mouse: [], para: [], reveal: [], canvas: null };
+    const collect = () => {
+      this._cache.canvas = document.querySelector('[data-sparkles]');
+      this._cache.mouse = Array.from(document.querySelectorAll('[data-mouse]')).map((el) => ({
+        el, d: parseFloat(el.getAttribute('data-mouse')) || 0
+      }));
+      this._cache.para = Array.from(document.querySelectorAll('[data-parallax]')).map((el) => ({
+        el, host: el.parentElement || el,
+        speed: parseFloat(el.getAttribute('data-parallax')) || 0,
+        scale: el.getAttribute('data-parallax-scale')
+      }));
+      const vh0 = window.innerHeight;
+      this._cache.reveal = Array.from(document.querySelectorAll('[data-reveal]')).filter((el) => !this._revealed.has(el));
+      this._cache.reveal.forEach((el) => {
+        if (el.__rvInit) return;
+        el.__rvInit = true;
+        if (el.getBoundingClientRect().top > vh0 * 0.92) {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(30px)';
+          el.style.transition = 'opacity 0.9s cubic-bezier(0.22,1,0.36,1), transform 0.9s cubic-bezier(0.22,1,0.36,1)';
+        } else {
+          this._revealed.add(el);
+        }
+      });
+    };
+    collect();
+    this._recollect = setInterval(collect, 2500);
+
+    this._lastScroll = null;
+    const loop = () => {
+      this._rafId = requestAnimationFrame(loop);
+      if (document.hidden) return;
+      const vh = window.innerHeight;
+      const mult = this.props.parallaxIntensidade ?? 1;
+
+      // smooth mouse — only touch the DOM while still interpolating
+      const dx = this._tmx - this._mx, dy = this._tmy - this._my;
+      if (Math.abs(dx) > 0.0004 || Math.abs(dy) > 0.0004) {
+        this._mx += dx * 0.06;
+        this._my += dy * 0.06;
+        this._cache.mouse.forEach(({ el, d }) => {
+          el.style.transform = 'translate3d(' + (this._mx * d).toFixed(1) + 'px,' + (this._my * d).toFixed(1) + 'px,0)';
+        });
+      }
+
+      // parallax + reveals — only when the page actually scrolled/resized
+      const sc = window.scrollY + 'x' + vh;
+      if (sc !== this._lastScroll) {
+        this._lastScroll = sc;
+        // read phase
+        const paraRects = this._cache.para.map((p) => p.host.getBoundingClientRect());
+        const revealTops = this._cache.reveal.map((el) => (this._revealed.has(el) ? null : el.getBoundingClientRect().top));
+        // write phase
+        this._cache.para.forEach((p, i) => {
+          const r = paraRects[i];
+          if (r.bottom < -300 || r.top > vh + 300) return;
+          const center = r.top + r.height / 2 - vh / 2;
+          p.el.style.transform = 'translate3d(0,' + (center * -p.speed * mult).toFixed(1) + 'px,0)' + (p.scale ? ' scale(' + p.scale + ')' : '');
+        });
+        this._cache.reveal.forEach((el, i) => {
+          const top = revealTops[i];
+          if (top === null) return;
+          if (top <= vh * 0.92) {
+            this._revealed.add(el);
+            el.style.opacity = '1';
+            el.style.transform = 'none';
+          }
+        });
+        this._heroVisible = !this._cache.canvas || this._cache.canvas.getBoundingClientRect().bottom > 0;
+      }
+
+      if (this._heroVisible !== false) this._drawSparkles();
+    };
+    this._rafId = requestAnimationFrame(loop);
+  }
+
+  _drawSparkles() {
+    const canvas = this._cache && this._cache.canvas;
+    if (!canvas) return;
+    if (!canvas.width || this._lastVw !== window.innerWidth) {
+      this._lastVw = window.innerWidth;
+      const rect = canvas.getBoundingClientRect();
+      canvas.width = Math.max(1, Math.floor(rect.width));
+      canvas.height = Math.max(1, Math.floor(rect.height));
+    }
+    if (!this._sparks) {
+      this._sparks = Array.from({ length: 60 }, () => ({
+        x: Math.random(), y: Math.random(),
+        s: 0.6 + Math.random() * 1.8,
+        p: Math.random() * Math.PI * 2,
+        v: 0.15 + Math.random() * 0.5,
+        drift: (Math.random() - 0.5) * 0.00012
+      }));
+    }
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const t = performance.now() / 1000;
+    this._sparks.forEach((sp) => {
+      sp.y -= 0.00006 * sp.v * 60;
+      sp.x += sp.drift * 60;
+      if (sp.y < -0.02) { sp.y = 1.02; sp.x = Math.random(); }
+      const tw = 0.5 + 0.5 * Math.sin(t * sp.v * 2 + sp.p);
+      const a = 0.1 + tw * 0.5;
+      const x = sp.x * canvas.width, y = sp.y * canvas.height, s = sp.s * (0.7 + tw * 0.5);
+      ctx.fillStyle = 'rgba(236,231,215,' + a.toFixed(3) + ')';
+      ctx.beginPath();
+      ctx.moveTo(x, y - s * 3);
+      ctx.quadraticCurveTo(x + s * 0.6, y - s * 0.6, x + s * 3, y);
+      ctx.quadraticCurveTo(x + s * 0.6, y + s * 0.6, x, y + s * 3);
+      ctx.quadraticCurveTo(x - s * 0.6, y + s * 0.6, x - s * 3, y);
+      ctx.quadraticCurveTo(x - s * 0.6, y - s * 0.6, x, y - s * 3);
+      ctx.fill();
+    });
+  }
+
+  componentWillUnmount() {
+    if (this._rafId) cancelAnimationFrame(this._rafId);
+    if (this._recollect) clearInterval(this._recollect);
+    if (this._promoTimer) clearTimeout(this._promoTimer);
+    window.removeEventListener('mousemove', this._onMouse);
+    (this._tiltHandlers || []).forEach(([card, move, leave]) => {
+      card.removeEventListener('mousemove', move);
+      card.removeEventListener('mouseleave', leave);
+    });
+  }
+
+  renderVals() {
+    const lang = this.lang;
+    const pt = lang === 'pt';
+    const en = !pt;
+    const on = { bg: '#ECEDEB', color: '#0F1113' };
+    const off = { bg: 'transparent', color: '#9BA1A3' };
+    return {
+      pt, en,
+      setPt: () => this.setState({ lang: 'pt' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      ptBg: pt ? on.bg : off.bg,
+      ptColor: pt ? on.color : off.color,
+      enBg: en ? on.bg : off.bg,
+      enColor: en ? on.color : off.color,
+      agendaVisivel: this.props.mostrarAgenda ?? true,
+      fanRef: this.fanRef,
+      fanPendente: !this.state.fanOk,
+      fanOk: this.state.fanOk,
+      fanPlaceholder: pt ? 'seu e-mail' : 'your e-mail',
+      joinFan: () => {
+        const v = (this.fanRef.current && this.fanRef.current.value || '').trim();
+        if (v.includes('@')) this.setState({ fanOk: true });
+        else if (this.fanRef.current) this.fanRef.current.focus();
+      },
+      ano: new Date().getFullYear(),
+      promoVisivel: !!this.state.promo,
+      fecharPromo: () => {
+        try { sessionStorage.setItem('vmt-promo-20', '1'); } catch (e) {}
+        this.setState({ promo: false });
+      },
+      shows: [
+        { data: '04 ' + (pt ? 'JUL' : 'JUL') + ' 2026', evento: 'Cyclus', local: 'Rio Grande do Sul - RS', status: 'KONTROL', flagBg: "url('assets/flag-br-lg.png')", flagAlt: 'Brasil' },
+        { data: '04 ' + (pt ? 'JUL' : 'JUL') + ' 2026', evento: 'Puma Punku', local: 'Minas Gerais - MG', status: 'ELETRONIKKA', flagBg: "url('assets/flag-br-lg.png')", flagAlt: 'Brasil' },
+        { data: '11 ' + (pt ? 'JUL' : 'JUL') + ' 2026', evento: 'Sunlight', local: 'São Paulo - SP', status: 'KONTROL', flagBg: "url('assets/flag-br-lg.png')", flagAlt: 'Brasil' },
+        { data: '19 ' + (pt ? 'JUL' : 'JUL') + ' 2026', evento: 'Voov', local: pt ? 'Alemanha' : 'Germany', status: 'ELETRONIKKA', flagBg: "url('assets/flag-de.png')", flagAlt: pt ? 'Alemanha' : 'Germany' }
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>

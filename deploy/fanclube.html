@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Fã-Clube — Vermont</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Mystery+Quest&family=Unbounded:wght@300;400;500&family=Archivo:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #0C0E10; }
+    ::selection { background: #C9A05C; color: #0F1113; }
+    @keyframes vmt-logo { 0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 0 rgba(221,181,112,0)); } 50% { transform: translateY(-2px) scale(1.05); filter: drop-shadow(0 0 10px rgba(221,181,112,0.75)); } }
+    @keyframes vmt-fanglow { 0%, 100% { box-shadow: 0 0 8px rgba(201,160,92,0.35); } 50% { box-shadow: 0 0 22px rgba(221,181,112,0.8); } }
+  </style>
+  <script src="assets/vermont-player.js"></script>
+</helmet>
+
+<div style="min-height:100vh;background:#0C0E10;color:#ECEDEB;font-family:'Archivo',sans-serif;font-weight:300;overflow-x:hidden;display:flex;flex-direction:column">
+
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;row-gap:8px;padding:14px 24px;background:linear-gradient(180deg, rgba(12,14,16,0.94), rgba(12,14,16,0));backdrop-filter:blur(8px)">
+    <a href="index.html" style="display:flex;align-items:center"><img src="assets/logo-white.png" alt="Vermont" style="height:38px;display:block;animation:vmt-logo 3.2s ease-in-out infinite"></a>
+    <div style="display:flex;align-items:center;gap:26px;flex-wrap:wrap;justify-content:flex-end;row-gap:8px">
+      <a href="index.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570">Home</a>
+      <a href="agenda.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570">Agenda</a>
+      <a href="sets.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570">Sets</a>
+      <a href="lancamentos.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Lançamentos</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Releases</sc-if></a>
+      <a href="shop.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570">Shop</a>
+      <a href="booking.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Contratação</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Booking</sc-if></a>
+      <a href="fanclube.html" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg, #DDB570, #C9A05C);color:#0F1113;text-decoration:none;font-weight:600;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border-radius:999px;animation:vmt-fanglow 2.6s ease-in-out infinite;transition:transform 0.25s ease" style-hover="transform:translateY(-2px) scale(1.03)">✦&nbsp;Fan&nbsp;Clube</a>
+      <div style="display:flex;align-items:center;gap:2px;border:1px solid rgba(236,237,235,0.18);border-radius:999px;padding:3px">
+        <button onClick="{{ setPt }}" style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;border:none;cursor:pointer;border-radius:999px;padding:5px 12px;background:{{ ptBg }};color:{{ ptColor }}"><img src="assets/flag-br.png" alt="" style="width:18px;height:13px;border-radius:2px;display:block">PT</button>
+        <button onClick="{{ setEn }}" style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;border:none;cursor:pointer;border-radius:999px;padding:5px 12px;background:{{ enBg }};color:{{ enColor }}"><img src="assets/flag-us.png" alt="" style="width:18px;height:13px;border-radius:2px;display:block">EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <main style="flex:1;display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:72px;align-items:center;max-width:1240px;width:100%;box-sizing:border-box;margin:0 auto;padding:160px 64px 120px">
+    <div style="position:relative">
+      <div style="overflow:hidden;border-radius:2px">
+        <img src="assets/fans-04.jpg" alt="Vermont com fãs e as bandeiras do fan clube" style="width:100%;height:auto;display:block">
+      </div>
+      <div style="position:absolute;left:-14px;bottom:-14px;width:120px;height:120px;border-left:1px solid #C9A05C;border-bottom:1px solid #C9A05C"></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.32em;color:#C9A05C">✦&nbsp;FAN&nbsp;CLUBE</span>
+      <h1 style="margin:0;font-family:'Unbounded',sans-serif;font-weight:400;font-size:40px;line-height:1.25">
+        <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Entre para o círculo</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Join the circle</sc-if>
+      </h1>
+      <p style="margin:0;font-size:16.5px;line-height:1.75;color:#9BA1A3">
+        <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Sets inéditos antes de todo mundo, pré-venda de ingressos e conteúdo exclusivo direto do estúdio.</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Unreleased sets before everyone else, ticket pre-sales and exclusive content straight from the studio.</sc-if>
+      </p>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:12px;color:#B9BEC0;font-size:15px"><span style="color:#C9A05C">✦</span><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Sets e tracks em primeira mão</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Sets and tracks first</sc-if></div>
+        <div style="display:flex;align-items:center;gap:12px;color:#B9BEC0;font-size:15px"><span style="color:#C9A05C">✦</span><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Pré-venda e descontos em eventos</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Pre-sales and event discounts</sc-if></div>
+        <div style="display:flex;align-items:center;gap:12px;color:#B9BEC0;font-size:15px"><span style="color:#C9A05C">✦</span><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Bastidores e conteúdo exclusivo</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Backstage and exclusive content</sc-if></div>
+      </div>
+      <sc-if value="{{ fanPendente }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;gap:10px;margin-top:8px;flex-wrap:wrap">
+          <input ref="{{ fanRef }}" type="email" placeholder="{{ fanPlaceholder }}" style="flex:1;min-width:220px;box-sizing:border-box;background:rgba(236,237,235,0.05);border:1px solid rgba(236,237,235,0.18);border-radius:2px;padding:15px 18px;color:#ECEDEB;font-family:'IBM Plex Mono',monospace;font-size:14px;outline:none" style-focus="border-color:#C9A05C">
+          <button onClick="{{ joinFan }}" style="background:#C9A05C;color:#0F1113;border:none;cursor:pointer;font-family:'Archivo',sans-serif;font-weight:500;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;padding:15px 28px;border-radius:2px;transition:background 0.25s ease" style-hover="background:#DDB570">
+            <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Entrar</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Join</sc-if>
+          </button>
+        </div>
+      </sc-if>
+      <sc-if value="{{ fanOk }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;align-items:center;gap:12px;margin-top:8px;border:1px solid rgba(201,160,92,0.4);background:rgba(201,160,92,0.08);border-radius:2px;padding:16px 20px;color:#C9A05C;font-family:'IBM Plex Mono',monospace;font-size:14px">
+          ✦&nbsp;<sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Bem-vindo ao círculo. Você vai receber as novidades em primeira mão.</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Welcome to the circle. You'll hear everything first.</sc-if>
+        </div>
+      </sc-if>
+    </div>
+  </main>
+
+  <!-- MURAL DOS FÃS -->
+  <section style="max-width:1240px;width:100%;box-sizing:border-box;margin:0 auto;padding:0 64px 130px;display:flex;flex-direction:column;gap:36px">
+    <div style="display:flex;align-items:baseline;gap:20px">
+      <h2 style="margin:0;font-family:'Unbounded',sans-serif;font-weight:400;font-size:30px">
+        <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Mural dos fãs</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Fan wall</sc-if>
+      </h2>
+      <div style="flex:1;height:1px;background:rgba(236,237,235,0.1)"></div>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.2em;color:#C9A05C">✦✦✦</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4, minmax(0,1fr));grid-auto-rows:210px;gap:14px">
+      <div style="grid-row:span 2;overflow:hidden;border-radius:2px;position:relative;border:1px solid rgba(236,237,235,0.08)">
+        <img src="assets/fans-08.jpg" alt="Vermont com fã no festival" style="width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block;transition:transform 0.6s ease" style-hover="transform:scale(1.05)">
+      </div>
+      <div style="grid-column:span 2;grid-row:span 2;overflow:hidden;border-radius:2px;position:relative;border:1px solid rgba(236,237,235,0.08)">
+        <img src="assets/fans-06.jpg" alt="Fãs com a bandeira Vermont" style="width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.6s ease" style-hover="transform:scale(1.05)">
+        <div style="position:absolute;inset:auto 0 0 0;background:linear-gradient(0deg, rgba(12,14,16,0.75), rgba(12,14,16,0));padding:18px 20px 14px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.22em;color:#DDB570">✦ <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">A BANDEIRA RODA O BRASIL</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">THE FLAG TRAVELS BRAZIL</sc-if></span>
+        </div>
+      </div>
+      <div style="grid-row:span 2;overflow:hidden;border-radius:2px;position:relative;border:1px solid rgba(236,237,235,0.08)">
+        <img src="assets/fans-05.jpg" alt="Abraço no festival" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;transition:transform 0.6s ease" style-hover="transform:scale(1.05)">
+      </div>
+      <div style="overflow:hidden;border-radius:2px;position:relative;border:1px solid rgba(236,237,235,0.08)">
+        <img src="assets/fans-03.jpg" alt="Fãs na pista" style="width:100%;height:100%;object-fit:cover;object-position:center 25%;display:block;transition:transform 0.6s ease" style-hover="transform:scale(1.05)">
+      </div>
+      <div style="grid-column:span 3;overflow:hidden;border-radius:2px;position:relative;border:1px solid rgba(236,237,235,0.08)">
+        <img src="assets/fans-01.png" alt="Fãs do Vermont" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;transition:transform 0.6s ease" style-hover="transform:scale(1.05)">
+      </div>
+    </div>
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5c6266;text-align:center">
+      <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Levou a bandeira? Marca o Vermont que sua foto pode aparecer aqui ✦</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Brought the flag? Tag Vermont and your photo might show up here ✦</sc-if>
+    </span>
+  </section>
+
+  <footer style="border-top:1px solid rgba(236,237,235,0.08);background:#0A0C0E">
+    <div style="max-width:1240px;margin:0 auto;padding:56px 40px 28px;display:flex;flex-direction:column;gap:36px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <a href="index.html" style="display:inline-flex;width:fit-content"><img src="assets/logo-white.png" alt="Vermont" style="height:38px;display:block;filter:drop-shadow(0 0 10px rgba(221,181,112,0.3))"></a>
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.22em;color:#5c6266">Created by :</span><img src="assets/emusic-icon.png" alt="" style="height:24px;display:block"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.18em;color:#E9EDF7">E-MUSIC<span style="color:#3B82F6">.AI</span></span></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <a href="#" aria-label="Instagram" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"></circle></svg></a>
+          <a href="https://soundcloud.com/vermontlive" target="_blank" aria-label="SoundCloud" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2.5 15.5v2.4M5 14v4M7.5 13v5M10 12.2v5.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none"></path><path d="M12.2 18h5.9a3.4 3.4 0 0 0 .6-6.76A5.1 5.1 0 0 0 13.7 7c-.53 0-1.03.08-1.5.23V18z"></path></svg></a>
+          <a href="#" aria-label="Spotify" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M7.5 9.6c3.2-.9 6.6-.5 9.2 1"></path><path d="M8 12.6c2.6-.7 5.3-.4 7.5.9"></path><path d="M8.5 15.4c2-.5 4-.2 5.7.8"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCIIcqA9U0cRfaCE7CWY99jQ" target="_blank" aria-label="YouTube" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"></rect><path d="M10 9.3v5.4l4.8-2.7L10 9.3z" fill="currentColor" stroke="none"></path></svg></a>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(236,237,235,0.07);padding-top:22px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5c6266">© {{ ano }} — <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Todos os direitos reservados</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">All rights reserved</sc-if></span>
+        <a href="booking.html" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.14em;color:#C9A05C;text-decoration:none" style-hover="color:#DDB570"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">CONTRATAÇÃO →</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">BOOKING →</sc-if></a>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;idiomaInicial&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;pt&quot;, &quot;en&quot;], &quot;default&quot;: &quot;pt&quot;, &quot;tsType&quot;: &quot;'pt' | 'en'&quot;}}">
+class Component extends DCLogic {
+  state = { lang: null, fanOk: false };
+  fanRef = React.createRef();
+
+  get lang() {
+    return this.state.lang ?? this.props.idiomaInicial ?? 'pt';
+  }
+
+  renderVals() {
+    const pt = this.lang === 'pt';
+    const en = !pt;
+    const on = { bg: '#ECEDEB', color: '#0F1113' };
+    const off = { bg: 'transparent', color: '#9BA1A3' };
+    return {
+      pt, en,
+      setPt: () => this.setState({ lang: 'pt' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      ptBg: pt ? on.bg : off.bg, ptColor: pt ? on.color : off.color,
+      enBg: en ? on.bg : off.bg, enColor: en ? on.color : off.color,
+      ano: new Date().getFullYear(),
+      fanRef: this.fanRef,
+      fanPendente: !this.state.fanOk,
+      fanOk: this.state.fanOk,
+      fanPlaceholder: pt ? 'seu e-mail' : 'your e-mail',
+      joinFan: () => {
+        const v = (this.fanRef.current && this.fanRef.current.value || '').trim();
+        if (v.includes('@')) this.setState({ fanOk: true });
+        else if (this.fanRef.current) this.fanRef.current.focus();
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

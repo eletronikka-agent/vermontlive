@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Shop — Vermont</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500&family=Archivo:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: #0C0E10; }
+    ::selection { background: #C9A05C; color: #0F1113; }
+    @keyframes vmt-logo { 0%, 100% { transform: translateY(0) scale(1); filter: drop-shadow(0 0 0 rgba(221,181,112,0)); } 50% { transform: translateY(-2px) scale(1.05); filter: drop-shadow(0 0 10px rgba(221,181,112,0.75)); } }
+    @keyframes vmt-fanglow { 0%, 100% { box-shadow: 0 0 8px rgba(201,160,92,0.35); } 50% { box-shadow: 0 0 22px rgba(221,181,112,0.8); } }
+    @keyframes vmt-kenburns { 0% { opacity: 0; transform: scale(1.08) translateX(-1.5%); } 8% { opacity: 1; } 30% { opacity: 1; } 40% { opacity: 0; transform: scale(1.18) translateX(1.5%); } 100% { opacity: 0; } }
+    @keyframes vmt-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+    @keyframes vmt-rise { from { opacity: 0; transform: translateY(36px); } to { opacity: 1; transform: none; } }
+    @keyframes vmt-twinkle { 0%, 100% { opacity: 0.2; transform: scale(0.8); } 50% { opacity: 1; transform: scale(1.15); } }
+  </style>
+  <script src="assets/image-slot.js"></script>
+  <script src="assets/vermont-player.js"></script>
+</helmet>
+
+<div style="min-height:100vh;background:#0C0E10;color:#ECEDEB;font-family:'Archivo',sans-serif;font-weight:300;overflow-x:hidden;display:flex;flex-direction:column">
+
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;row-gap:8px;padding:14px 24px;background:linear-gradient(180deg, rgba(12,14,16,0.94), rgba(12,14,16,0));backdrop-filter:blur(8px)">
+    <a href="index.html" style="display:flex;align-items:center"><img src="assets/logo-white.png" alt="Vermont" style="height:38px;display:block;animation:vmt-logo 3.2s ease-in-out infinite"></a>
+    <div style="display:flex;align-items:center;gap:26px;flex-wrap:wrap;justify-content:flex-end;row-gap:8px">
+      <a href="index.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570">Home</a>
+      <a href="agenda.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570">Agenda</a>
+      <a href="sets.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570">Sets</a>
+      <a href="lancamentos.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Lançamentos</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Releases</sc-if></a>
+      <a href="shop.html" style="color:#ECEDEB;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:400;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;border-bottom:1px solid #C9A05C;padding-bottom:3px">Shop</a>
+      <a href="booking.html" style="color:#9BA1A3;text-decoration:none;font-family:'Unbounded',sans-serif;font-weight:300;font-size:10.5px;letter-spacing:0.14em;text-transform:uppercase;transition:color 0.25s ease" style-hover="color:#DDB570"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Contratação</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Booking</sc-if></a>
+      <a href="fanclube.html" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg, #DDB570, #C9A05C);color:#0F1113;text-decoration:none;font-weight:600;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;padding:8px 16px;border-radius:999px;animation:vmt-fanglow 2.6s ease-in-out infinite;transition:transform 0.25s ease" style-hover="transform:translateY(-2px) scale(1.03)">✦&nbsp;Fan&nbsp;Clube</a>
+      <div style="display:flex;align-items:center;gap:2px;border:1px solid rgba(236,237,235,0.18);border-radius:999px;padding:3px">
+        <button onClick="{{ setPt }}" style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;border:none;cursor:pointer;border-radius:999px;padding:5px 12px;background:{{ ptBg }};color:{{ ptColor }}"><img src="assets/flag-br.png" alt="" style="width:18px;height:13px;border-radius:2px;display:block">PT</button>
+        <button onClick="{{ setEn }}" style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;border:none;cursor:pointer;border-radius:999px;padding:5px 12px;background:{{ enBg }};color:{{ enColor }}"><img src="assets/flag-us.png" alt="" style="width:18px;height:13px;border-radius:2px;display:block">EN</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO com fotos em ken burns -->
+  <header style="position:relative;min-height:78vh;display:flex;align-items:flex-end;overflow:hidden">
+    <img src="assets/live-02.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;animation:vmt-kenburns 21s linear infinite;animation-delay:0s">
+    <img src="assets/live-05.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:vmt-kenburns 21s linear infinite;animation-delay:7s">
+    <img src="assets/fans-06.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;animation:vmt-kenburns 21s linear infinite;animation-delay:14s">
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg, rgba(12,14,16,0.82) 0%, rgba(12,14,16,0.35) 45%, #0C0E10 100%)"></div>
+    <span style="position:absolute;top:22%;left:12%;color:#DDB570;font-size:18px;animation:vmt-twinkle 2.8s ease-in-out infinite">✦</span>
+    <span style="position:absolute;top:34%;right:16%;color:#DDB570;font-size:13px;animation:vmt-twinkle 3.6s ease-in-out infinite 0.9s">✦</span>
+    <span style="position:absolute;top:58%;left:28%;color:#ECEDEB;font-size:11px;animation:vmt-twinkle 3.1s ease-in-out infinite 1.6s">✦</span>
+    <span style="position:absolute;top:26%;right:36%;color:#DDB570;font-size:15px;animation:vmt-twinkle 4.2s ease-in-out infinite 2.2s">✦</span>
+    <div style="position:relative;max-width:1240px;width:100%;margin:0 auto;padding:0 64px 72px;box-sizing:border-box;display:flex;flex-direction:column;gap:20px">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.32em;color:#C9A05C;animation:vmt-rise 0.9s cubic-bezier(0.22,1,0.36,1) both">✦&nbsp;MERCH&nbsp;OFICIAL</span>
+      <h1 style="margin:0;font-family:'Unbounded',sans-serif;font-weight:400;font-size:clamp(48px, 7vw, 84px);line-height:1.05;animation:vmt-rise 0.9s cubic-bezier(0.22,1,0.36,1) 0.12s both">Shop</h1>
+      <p style="margin:0;max-width:52ch;font-size:17px;line-height:1.7;color:#B9BEC0;animation:vmt-rise 0.9s cubic-bezier(0.22,1,0.36,1) 0.24s both">
+        <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Vista o som do Vermont — camisetas, bonés e bandeiras oficiais para levar para a pista.</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Take Vermont with you — the flag that travels the festivals and the rest of the official merch.</sc-if>
+      </p>
+      <a href="#produtos" style="animation:vmt-rise 0.9s cubic-bezier(0.22,1,0.36,1) 0.36s both;display:inline-flex;width:fit-content;align-items:center;gap:10px;background:#C9A05C;color:#0F1113;text-decoration:none;font-weight:500;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;padding:15px 28px;border-radius:2px;transition:background 0.25s ease, transform 0.25s ease" style-hover="background:#DDB570;transform:translateY(-2px)">
+        <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Ver produtos</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Shop now</sc-if> ↓
+      </a>
+    </div>
+  </header>
+
+  <!-- MARQUEE -->
+  <div style="border-top:1px solid rgba(236,237,235,0.1);border-bottom:1px solid rgba(236,237,235,0.1);background:#101317;overflow:hidden;padding:13px 0">
+    <div style="display:flex;width:max-content;animation:vmt-marquee 24s linear infinite">
+      <span style="font-family:'Unbounded',sans-serif;font-weight:300;font-size:13px;letter-spacing:0.32em;color:#C9A05C;white-space:nowrap;padding-right:48px">DO&nbsp;ARTISTA&nbsp;PARA&nbsp;VOCÊ&nbsp;&nbsp;✦&nbsp;&nbsp;GROOVE&nbsp;SHOP&nbsp;&nbsp;✦&nbsp;&nbsp;ENVIO&nbsp;PARA&nbsp;TODO&nbsp;O&nbsp;BRASIL&nbsp;&nbsp;✦&nbsp;&nbsp;VERMONT&nbsp;&nbsp;✦&nbsp;&nbsp;</span>
+      <span style="font-family:'Unbounded',sans-serif;font-weight:300;font-size:13px;letter-spacing:0.32em;color:#C9A05C;white-space:nowrap;padding-right:48px">DO&nbsp;ARTISTA&nbsp;PARA&nbsp;VOCÊ&nbsp;&nbsp;✦&nbsp;&nbsp;GROOVE&nbsp;SHOP&nbsp;&nbsp;✦&nbsp;&nbsp;ENVIO&nbsp;PARA&nbsp;TODO&nbsp;O&nbsp;BRASIL&nbsp;&nbsp;✦&nbsp;&nbsp;VERMONT&nbsp;&nbsp;✦&nbsp;&nbsp;</span>
+    </div>
+  </div>
+
+  <main id="produtos" style="flex:1;max-width:1240px;width:100%;margin:0 auto;padding:90px 64px 120px;box-sizing:border-box;display:flex;flex-direction:column;gap:48px">
+
+    <div style="display:grid;grid-template-columns:repeat(3, minmax(0,1fr));gap:24px">
+      <sc-for list="{{ produtos }}" as="p" hint-placeholder-count="6">
+        <div style="display:flex;flex-direction:column;border:1px solid rgba(236,237,235,0.1);border-radius:2px;overflow:hidden;background:#101317;transition:border-color 0.3s ease, transform 0.3s ease" style-hover="border-color:rgba(201,160,92,0.5);transform:translateY(-4px)">
+          <div style="width:100%;aspect-ratio:1/1;background:#14171a"><image-slot id="{{ p.slot }}" src="{{ p.src }}" placeholder="{{ p.placeholder }}" shape="rect" style="width:100%;height:100%;display:block"></image-slot></div>
+          <div style="display:flex;flex-direction:column;gap:10px;padding:20px">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:12px">
+              <span style="font-size:16px;font-weight:500">{{ p.nome }}</span>
+              <span style="font-family:'IBM Plex Mono',monospace;font-size:15px;color:#C9A05C;white-space:nowrap">{{ p.preco }}</span>
+            </div>
+            <span style="font-size:13.5px;color:#9BA1A3;line-height:1.55">{{ p.desc }}</span>
+            <button onClick="{{ p.comprar }}" style="margin-top:6px;background:#C9A05C;color:#0F1113;border:none;cursor:pointer;font-family:'Archivo',sans-serif;font-weight:500;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;padding:13px 20px;border-radius:2px;transition:background 0.25s ease, box-shadow 0.25s ease" style-hover="background:#DDB570;box-shadow:0 0 16px rgba(221,181,112,0.45)">
+              <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Comprar</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Buy</sc-if>
+            </button>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5c6266;text-align:center">
+      <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Compra segura na loja oficial — <a href="https://www.grooveshop.com.br/vermont-" target="_blank" style="color:#C9A05C;text-decoration:none">Groove Shop</a> · parcelamento, Pix e envio para todo o Brasil ✦</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Secure checkout at the official store — <a href="https://www.grooveshop.com.br/vermont-" target="_blank" style="color:#C9A05C;text-decoration:none">Groove Shop</a> · ships across Brazil ✦</sc-if>
+    </span>
+  </main>
+
+  <!-- BANDA COM VÍDEO AO FUNDO -->
+  <section style="position:relative;overflow:hidden;border-top:1px solid rgba(236,237,235,0.08)">
+    <div style="position:absolute;inset:-60px 0;pointer-events:none">
+      <iframe src="https://www.youtube-nocookie.com/embed/XT8jPaQCL44?autoplay=1&mute=1&controls=0&loop=1&playlist=XT8jPaQCL44&rel=0&playsinline=1" title="" tabIndex="-1" style="position:absolute;top:50%;left:50%;width:177.8vh;min-width:100%;height:56.25vw;min-height:100%;transform:translate(-50%,-50%);border:none;opacity:0.28;filter:saturate(1.1)"></iframe>
+    </div>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg, #0C0E10 0%, rgba(12,14,16,0.45) 50%, #0C0E10 100%)"></div>
+    <div style="position:relative;max-width:1240px;margin:0 auto;padding:130px 64px;display:flex;flex-direction:column;align-items:center;gap:24px;text-align:center">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.32em;color:#C9A05C">✦&nbsp;<sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">VISTA&nbsp;O&nbsp;SOM</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">WEAR&nbsp;THE&nbsp;SOUND</sc-if></span>
+      <h2 style="margin:0;font-family:'Unbounded',sans-serif;font-weight:400;font-size:36px;line-height:1.25;max-width:22ch">
+        <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">A energia da pista, no seu guarda-roupa</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">The dancefloor energy, in your wardrobe</sc-if>
+      </h2>
+      <a href="https://www.grooveshop.com.br/vermont-" target="_blank" style="display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(236,237,235,0.35);color:#ECEDEB;text-decoration:none;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;padding:14px 28px;border-radius:2px;transition:border-color 0.25s ease, background 0.25s ease" style-hover="border-color:#C9A05C;background:rgba(201,160,92,0.1)">
+        <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Loja completa no Groove Shop</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">Full store at Groove Shop</sc-if> →
+      </a>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid rgba(236,237,235,0.08);background:#0A0C0E">
+    <div style="max-width:1240px;margin:0 auto;padding:56px 40px 28px;display:flex;flex-direction:column;gap:36px">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap">
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <a href="index.html" style="display:inline-flex;width:fit-content"><img src="assets/logo-white.png" alt="Vermont" style="height:38px;display:block;filter:drop-shadow(0 0 10px rgba(221,181,112,0.3))"></a>
+          <div style="display:flex;align-items:center;gap:10px"><span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.22em;color:#5c6266">Created by :</span><img src="assets/emusic-icon.png" alt="" style="height:24px;display:block"><span style="font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:0.18em;color:#E9EDF7">E-MUSIC<span style="color:#3B82F6">.AI</span></span></div>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+          <a href="#" aria-label="Instagram" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="5.5"></rect><circle cx="12" cy="12" r="4.2"></circle><circle cx="17.4" cy="6.6" r="1.15" fill="currentColor" stroke="none"></circle></svg></a>
+          <a href="https://soundcloud.com/vermontlive" target="_blank" aria-label="SoundCloud" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M2.5 15.5v2.4M5 14v4M7.5 13v5M10 12.2v5.8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" fill="none"></path><path d="M12.2 18h5.9a3.4 3.4 0 0 0 .6-6.76A5.1 5.1 0 0 0 13.7 7c-.53 0-1.03.08-1.5.23V18z"></path></svg></a>
+          <a href="#" aria-label="Spotify" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M7.5 9.6c3.2-.9 6.6-.5 9.2 1"></path><path d="M8 12.6c2.6-.7 5.3-.4 7.5.9"></path><path d="M8.5 15.4c2-.5 4-.2 5.7.8"></path></svg></a>
+          <a href="https://www.youtube.com/channel/UCIIcqA9U0cRfaCE7CWY99jQ" target="_blank" aria-label="YouTube" style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:999px;border:1px solid rgba(236,237,235,0.18);color:#9BA1A3;text-decoration:none;transition:all 0.25s ease" style-hover="color:#0F1113;background:linear-gradient(135deg, #DDB570, #C9A05C);border-color:#C9A05C;transform:translateY(-3px);box-shadow:0 8px 20px rgba(201,160,92,0.35)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="2.5" y="5.5" width="19" height="13" rx="4"></rect><path d="M10 9.3v5.4l4.8-2.7L10 9.3z" fill="currentColor" stroke="none"></path></svg></a>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(236,237,235,0.07);padding-top:22px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5c6266">© {{ ano }} — <sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">Todos os direitos reservados</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">All rights reserved</sc-if></span>
+        <a href="booking.html" style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.14em;color:#C9A05C;text-decoration:none" style-hover="color:#DDB570"><sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">CONTRATAÇÃO →</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">BOOKING →</sc-if></a>
+      </div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;idiomaInicial&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;pt&quot;, &quot;en&quot;], &quot;default&quot;: &quot;pt&quot;, &quot;tsType&quot;: &quot;'pt' | 'en'&quot;}}">
+class Component extends DCLogic {
+  state = { lang: null };
+
+  get lang() {
+    return this.state.lang ?? this.props.idiomaInicial ?? 'pt';
+  }
+
+  static PRODUTOS = [
+    { slot: 'shop-angels-off', nome: 'Oversized Angels Opera Offwhite', nomeEn: 'Oversized Angels Opera Offwhite', preco: 'R$ 129,90', desc: 'Camiseta oversized da collab Angels Opera — offwhite.', descEn: 'Oversized tee from the Angels Opera drop — offwhite.', src: 'https://images.tcdn.com.br/img/img_prod/1475000/oversized_angels_opera_1_20260401100847_ee2aca7f61d0.jpg', url: 'https://www.grooveshop.com.br/camisetas/oversized-angels-opera' },
+    { slot: 'shop-angels-black', nome: 'Oversized Angels Opera Black', nomeEn: 'Oversized Angels Opera Black', preco: 'R$ 129,90', desc: 'Camiseta oversized da collab Angels Opera — preta.', descEn: 'Oversized tee from the Angels Opera drop — black.', src: 'https://images.tcdn.com.br/img/img_prod/1475000/oversized_angels_opera_1_20260401100912_e5743b6ddddd.jpg', url: 'https://www.grooveshop.com.br/camisetas/copia-oversized-angels-opera' },
+    { slot: 'shop-selecao', nome: 'Camiseta Seleção Vermont', nomeEn: 'Vermont Squad Tee', preco: 'R$ 89,90', desc: 'A camisa da seleção — pra vestir o time do Vermont.', descEn: 'The squad jersey — wear the Vermont team colors.', src: 'https://images.tcdn.com.br/img/img_prod/1475000/camiseta_seleo_vermont_1_20260617154928_e3772e1ba9d8.jpg', url: 'https://www.grooveshop.com.br/vermont-/camisetas/camiseta-selecao-vermont' },
+    { slot: 'shop-bandeira', nome: 'Bandeira Vermont', nomeEn: 'Vermont Flag', preco: 'R$ 79,90', desc: 'A clássica que roda os festivais do Brasil e do mundo.', descEn: 'The classic that travels festivals in Brazil and beyond.', src: 'https://images.tcdn.com.br/img/img_prod/1475000/bandeira_vermont_2_20260408144535_4145705f29eb.jpg', url: 'https://www.grooveshop.com.br/bandeira/bandeira-vermont' },
+    { slot: 'shop-bone-trucker', nome: 'Boné Trucker Vermont', nomeEn: 'Vermont Trucker Cap', preco: 'R$ 59,90', desc: 'Trucker com tela e logo bordado.', descEn: 'Trucker cap with mesh back and embroidered logo.', src: 'https://images.tcdn.com.br/img/img_prod/1475000/bon_trucker_vermont_2_20260408144651_58b34fd435ae.jpg', url: 'https://www.grooveshop.com.br/bones/bone-trucker' },
+    { slot: 'shop-bone-reto', nome: 'Boné Aba Reta Vermont', nomeEn: 'Vermont Snapback', preco: 'R$ 59,90', desc: 'Aba reta, ajuste snapback.', descEn: 'Flat brim, snapback fit.', src: 'https://images.tcdn.com.br/img/img_prod/1475000/bon_aba_reta_1_20260330142646_24836e0b45c3.jpg', url: 'https://www.grooveshop.com.br/bones/bone-aba-reta' },
+    { slot: 'shop-chaveiro', nome: 'Chaveiro Vermont', nomeEn: 'Vermont Keychain', preco: 'R$ 19,90', desc: 'Madeira gravada a laser — pra levar a estrela pra todo lugar.', descEn: 'Laser-engraved wood — take the star everywhere.', src: 'https://images.tcdn.com.br/img/img_prod/1475000/chaveirio_vermont_2_20260401195634_26f4ebeb5c13.jpg', url: 'https://www.grooveshop.com.br/demais-produtos/chaveirio-vermont' }
+  ];
+
+  renderVals() {
+    const pt = this.lang === 'pt';
+    const en = !pt;
+    const on = { bg: '#ECEDEB', color: '#0F1113' };
+    const off = { bg: 'transparent', color: '#9BA1A3' };
+    return {
+      pt, en,
+      setPt: () => this.setState({ lang: 'pt' }),
+      setEn: () => this.setState({ lang: 'en' }),
+      ptBg: pt ? on.bg : off.bg, ptColor: pt ? on.color : off.color,
+      enBg: en ? on.bg : off.bg, enColor: en ? on.color : off.color,
+      ano: new Date().getFullYear(),
+      produtos: Component.PRODUTOS.map((p) => ({
+        slot: p.slot,
+        src: p.src,
+        placeholder: (pt ? 'Arraste a foto de ' : 'Drop a photo of ') + (pt ? p.nome : p.nomeEn),
+        nome: pt ? p.nome : p.nomeEn,
+        preco: p.preco,
+        desc: pt ? p.desc : p.descEn,
+        comprar: () => { window.open(p.url, '_blank'); }
+      }))
+    };
+  }
+}
+</script>
+</body>
+</html>
