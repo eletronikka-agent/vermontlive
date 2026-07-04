@@ -40,6 +40,8 @@
     })();
   }
 
+  if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+
   if (document.body) init();
   else document.addEventListener('DOMContentLoaded', init);
 })();
