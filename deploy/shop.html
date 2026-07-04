@@ -131,9 +131,9 @@
 
   <!-- BANDA COM VÍDEO AO FUNDO -->
   <section style="position:relative;overflow:hidden;border-top:1px solid rgba(236,237,235,0.08)">
-    <div style="position:absolute;inset:-60px 0;pointer-events:none">
+    <sc-if value="{{ videoBg }}" hint-placeholder-val="{{ false }}"><div style="position:absolute;inset:-60px 0;pointer-events:none">
       <iframe src="https://www.youtube-nocookie.com/embed/XT8jPaQCL44?autoplay=1&mute=1&controls=0&loop=1&playlist=XT8jPaQCL44&rel=0&playsinline=1" title="" tabIndex="-1" style="position:absolute;top:50%;left:50%;width:177.8vh;min-width:100%;height:56.25vw;min-height:100%;transform:translate(-50%,-50%);border:none;opacity:0.28;filter:saturate(1.1)"></iframe>
-    </div>
+    </div></sc-if>
     <div style="position:absolute;inset:0;background:linear-gradient(180deg, #0C0E10 0%, rgba(12,14,16,0.45) 50%, #0C0E10 100%)"></div>
     <div style="position:relative;max-width:1240px;margin:0 auto;padding:130px 64px;display:flex;flex-direction:column;align-items:center;gap:24px;text-align:center">
       <span style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.32em;color:#C9A05C">✦&nbsp;<sc-if value="{{ pt }}" hint-placeholder-val="{{ true }}">VISTA&nbsp;O&nbsp;SOM</sc-if><sc-if value="{{ en }}" hint-placeholder-val="{{ false }}">WEAR&nbsp;THE&nbsp;SOUND</sc-if></span>
@@ -170,7 +170,17 @@
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;idiomaInicial&quot;: {&quot;editor&quot;: &quot;enum&quot;, &quot;options&quot;: [&quot;pt&quot;, &quot;en&quot;], &quot;default&quot;: &quot;pt&quot;, &quot;tsType&quot;: &quot;'pt' | 'en'&quot;}}">
 class Component extends DCLogic {
-  state = { lang: null };
+  state = { lang: null, mobile: typeof window !== 'undefined' && window.matchMedia('(max-width: 760px)').matches };
+
+  componentDidMount() {
+    this.mq = window.matchMedia('(max-width: 760px)');
+    this.mqFn = () => this.setState({ mobile: this.mq.matches });
+    this.mq.addEventListener('change', this.mqFn);
+  }
+
+  componentWillUnmount() {
+    if (this.mq) this.mq.removeEventListener('change', this.mqFn);
+  }
 
   get lang() {
     return this.state.lang ?? this.props.idiomaInicial ?? 'pt';
@@ -189,10 +199,11 @@ class Component extends DCLogic {
   renderVals() {
     const pt = this.lang === 'pt';
     const en = !pt;
+    const videoBg = !this.state.mobile;
     const on = { bg: '#ECEDEB', color: '#0F1113' };
     const off = { bg: 'transparent', color: '#9BA1A3' };
     return {
-      pt, en,
+      pt, en, videoBg,
       setPt: () => this.setState({ lang: 'pt' }),
       setEn: () => this.setState({ lang: 'en' }),
       ptBg: pt ? on.bg : off.bg, ptColor: pt ? on.color : off.color,
