@@ -8,6 +8,9 @@ node_modules/
 .DS_Store
 Thumbs.db
 
+# Artefatos
+*.zip
+
 # Logs / env
 *.log
 .env
