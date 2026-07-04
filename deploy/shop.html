@@ -43,6 +43,11 @@
       [style*="repeat(3"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
       [style*="grid-auto-rows"] { grid-auto-rows: 170px !important; }
       #produtos [style*="repeat(3"] { grid-template-columns: 1fr !important; }
+      /* perf: sem vídeo de fundo nem ken burns no mobile */
+      section > div > iframe { display: none !important; }
+      header > img { animation: none !important; }
+      header > img:nth-of-type(2), header > img:nth-of-type(3) { display: none !important; }
+
       [style*="repeat(4"] { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
     }
   </style>
